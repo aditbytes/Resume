@@ -214,6 +214,51 @@
             background: rgba(0, 0, 0, 0.1);
         }
 
+        /* Lightbox Styles */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        #lightbox.active img {
+            transform: scale(1);
+        }
+        .gallery-img {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Gallery Grid Styles */
+        .hidden-item {
+            display: none;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
@@ -222,6 +267,11 @@
     <button id="theme-toggle" aria-label="Toggle Dark Mode">
         <i class="fas fa-sun text-xl" id="theme-icon"></i>
     </button>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <img src="" alt="Full size screenshot">
+    </div>
 
     <!-- Three.js Background & Blobs -->
     <div id="canvas-container"></div>
@@ -582,6 +632,28 @@
                     </div>
                 </div>
             </section>
+
+            <!-- LeetCode Solutions Gallery -->
+            <section id="leetcode-gallery" class="mb-24" data-aos="fade-up">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">LeetCode <span class="text-gradient">Solutions Archive</span></h2>
+                    <p class="text-gray-400">A visual log of my algorithmic problem-solving journey.</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid Container -->
+                <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Images will be injected here by JavaScript -->
+                </div>
+
+                <!-- View More Button -->
+                <div class="text-center mt-8">
+                    <button id="load-more-btn" class="px-8 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all backdrop-blur-sm hidden">
+                        View More Solutions <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+            </section>
             
         </div>
 
@@ -625,6 +697,24 @@
         const body = document.body;
         let isLightMode = false;
 
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        
+        // Delegated event listener for dynamically added images
+        document.getElementById('gallery-grid').addEventListener('click', (e) => {
+            if (e.target.classList.contains('gallery-img')) {
+                lightboxImg.src = e.target.src;
+                lightbox.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            body.style.overflow = 'auto'; // Restore scrolling
+        });
+
         // Global references for Three.js objects to update them dynamically
         let particlesMaterialRef, lineMaterialRef;
 
@@ -654,6 +744,86 @@
                 }
             }
         });
+
+        // --- DYNAMIC GALLERY SCRIPT ---
+        const galleryGrid = document.getElementById('gallery-grid');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const maxImagesToCheck = 50; // Will check for solution1.png to solution50.png
+        const itemsPerPage = 4;
+        let validImages = [];
+        let currentlyShown = 0;
+
+        function initGallery() {
+            // Attempt to load images
+            for (let i = 1; i <= maxImagesToCheck; i++) {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'glass-card p-2 rounded-xl group relative overflow-hidden h-48 hidden-item'; // Hidden by default
+                
+                const img = document.createElement('img');
+                img.src = `./leetcode_screenshots/solution${i}.png`; // EXPECTS: solution1.png, solution2.png, etc.
+                img.alt = `LeetCode Solution ${i}`;
+                img.className = 'gallery-img w-full h-full object-cover rounded-lg';
+                
+                // Add overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none';
+                overlay.innerHTML = '<span class="text-white font-bold"><i class="fas fa-search-plus mr-2"></i>View</span>';
+
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(overlay);
+                galleryGrid.appendChild(imgContainer);
+
+                // Check if image exists
+                img.onload = function() {
+                    // Valid image
+                    validImages.push(imgContainer);
+                    updateGalleryVisibility();
+                };
+
+                img.onerror = function() {
+                    // Invalid image - remove from DOM so it doesn't take up space
+                    imgContainer.remove();
+                };
+            }
+        }
+
+        function updateGalleryVisibility() {
+            // Sort valid images to ensure order (optional, as append order is usually preserved but async loading varies)
+            // Note: Since we appended in order, validImages array might be out of order due to network speed.
+            // But for local files, it's usually fast. To be safe, we just show what we have.
+            
+            // Show the first batch if not already shown
+            if (currentlyShown === 0 && validImages.length > 0) {
+                showNextBatch();
+                loadMoreBtn.classList.remove('hidden');
+            }
+        }
+
+        function showNextBatch() {
+            const nextBatch = validImages.slice(currentlyShown, currentlyShown + itemsPerPage);
+            
+            nextBatch.forEach(item => {
+                item.classList.remove('hidden-item');
+                // Add a small fade-in animation
+                item.animate([
+                    { opacity: 0, transform: 'translateY(10px)' },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ], { duration: 500, easing: 'ease-out' });
+            });
+
+            currentlyShown += nextBatch.length;
+
+            // Hide button if no more images
+            if (currentlyShown >= validImages.length) {
+                loadMoreBtn.classList.add('hidden');
+            }
+        }
+
+        loadMoreBtn.addEventListener('click', showNextBatch);
+        
+        // Start Gallery Init
+        initGallery();
+
 
         // THREE.JS ANIMATION CODE
         const initThreeJS = () => {
