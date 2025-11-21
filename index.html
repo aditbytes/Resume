@@ -1,649 +1,796 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya - Finance Enthusiast</title>
+    <title>Aditya | Quant, Finance & Data</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #e2e8f0;
-            overflow-x: hidden;
+        :root {
+            --bg-color: #050505;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af; /* gray-400 */
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover-bg: rgba(30, 30, 40, 0.8);
+            --card-shadow: rgba(99, 102, 241, 0.15);
+            --marquee-color: rgba(255,255,255,0.7);
         }
 
-        #bg-canvas {
+        /* Light Mode Variables */
+        body.light-mode {
+            --bg-color: #f8fafc; /* slate-50 */
+            --text-main: #111827; /* gray-900 */
+            --text-muted: #4b5563; /* gray-600 */
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-hover-bg: rgba(255, 255, 255, 0.9);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --marquee-color: rgba(17, 24, 39, 0.7);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Overrides for specific tailwind classes in light mode */
+        body.light-mode .text-white { color: var(--text-main) !important; }
+        body.light-mode .text-gray-400 { color: var(--text-muted) !important; }
+        body.light-mode .text-gray-300 { color: #374151 !important; } /* gray-700 */
+        body.light-mode .text-gray-500 { color: #6b7280 !important; }
+        
+        body.light-mode .bg-white\/5 { background-color: rgba(0,0,0,0.05) !important; }
+        body.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+        body.light-mode .border-white\/5 { border-color: rgba(0,0,0,0.05) !important; }
+        body.light-mode .bg-black\/50 { background-color: rgba(255,255,255,0.7) !important; color: #000; }
+        body.light-mode .bg-black\/40 { background-color: rgba(30, 41, 59, 0.9) !important; color: #fff; } /* Keep terminal dark */
+        body.light-mode footer.bg-black\/50 { background-color: rgba(255,255,255,0.8) !important; border-top: 1px solid rgba(0,0,0,0.1); }
+
+        /* Three.js Canvas Container */
+        #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: var(--bg-color);
+            transition: background-color 0.5s ease;
         }
 
-        .glass-card {
-            background: rgba(17, 24, 39, 0.4);
-            backdrop-filter: blur(25px) saturate(200%);
-            -webkit-backdrop-filter: blur(25px) saturate(200%);
-            border: 1px solid rgba(79, 70, 229, 0.3);
-            box-shadow: 
-                0 20px 40px -15px rgba(79, 70, 229, 0.2),
-                0 10px 25px -10px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1) 0%, transparent 50%, rgba(99, 102, 241, 0.1) 100%);
-            border-radius: inherit;
+        /* Glowing Background Blobs */
+        .glow-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
             z-index: -1;
+            animation: float 10s infinite ease-in-out;
+            pointer-events: none;
         }
-
-        .floating-card {
-            animation: float 6s ease-in-out infinite;
-            transform-style: preserve-3d;
-        }
+        .blob-1 { top: -20%; left: -10%; animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: 2s; }
+        .blob-3 { top: 40%; left: 40%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: 4s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateX(0deg); }
-            50% { transform: translateY(-10px) rotateX(2deg); }
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+            100% { transform: translate(0, 0); }
         }
 
-        .skill-tag {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.6), rgba(99, 102, 241, 0.4));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
         }
 
-        .skill-tag::before {
-            content: '';
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            background: var(--glass-hover-bg);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -10px var(--card-shadow);
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--marquee-color);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1e1e1e;
+            border-left: 3px solid #6366f1;
+        }
+        /* Keep code blocks dark in light mode for contrast, maybe slightly lighter shadow */
+        body.light-mode .code-block {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode .code-block h3 { color: white !important; } /* Keep title white inside dark block */
+        body.light-mode .code-block p { color: #9ca3af !important; } /* Keep text gray inside dark block */
+
+
+        /* Timeline Styles */
+        .timeline-line {
             position: absolute;
+            left: 50%;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .skill-tag:hover::before {
-            left: 100%;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.4);
-            border-color: rgba(99, 102, 241, 0.6);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.3rem;
-            top: 6px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            border: 3px solid rgba(79, 70, 229, 0.8);
-            box-shadow: 0 0 20px rgba(79, 70, 229, 0.6);
-            z-index: 1;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
-            50% { box-shadow: 0 0 30px rgba(79, 70, 229, 0.8), 0 0 40px rgba(79, 70, 229, 0.4); }
-            100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.3);
-            border: 1px solid rgba(79, 70, 229, 0.2);
-            backdrop-filter: blur(15px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            background: rgba(30, 41, 59, 0.5);
-            border-color: rgba(79, 70, 229, 0.5);
-            box-shadow: 
-                0 25px 50px rgba(79, 70, 229, 0.3),
-                0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px) rotateX(10deg);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .header-3d {
-            transform-style: preserve-3d;
-            animation: headerFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes headerFloat {
-            0%, 100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
-            25% { transform: perspective(1000px) rotateX(2deg) rotateY(-1deg); }
-            50% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
-            75% { transform: perspective(1000px) rotateX(-2deg) rotateY(1deg); }
-        }
-
-        .profile-image {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 20px 40px rgba(79, 70, 229, 0.3));
-        }
-
-        .profile-image:hover {
-            transform: scale(1.1) rotateY(10deg) rotateX(-5deg);
-            filter: drop-shadow(0 30px 60px rgba(79, 70, 229, 0.5));
-        }
-
-        .linkedin-btn {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .linkedin-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.4);
-        }
-
-        .section-header {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-header::after {
-            content: '';
-            position: absolute;
             bottom: 0;
-            left: 0;
-            height: 2px;
-            width: 0;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
-            transition: width 0.8s ease;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #6366f1, transparent);
+            transform: translateX(-50%);
         }
 
-        .section-header.is-visible::after {
-            width: 100%;
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Darker gradient for light mode visibility */
+        body.light-mode .text-gradient {
+            background: linear-gradient(to right, #4f46e5, #9333ea, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .delay-100 { transition-delay: 0.1s; }
-        .delay-200 { transition-delay: 0.2s; }
-        .delay-300 { transition-delay: 0.3s; }
-        .delay-400 { transition-delay: 0.4s; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        body.light-mode ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+        body.light-mode ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        .morphing-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.1) 0%, transparent 70%),
-                        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            animation: morphBackground 10s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes morphBackground {
-            0%, 100% { 
-                background: radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.1) 0%, transparent 70%),
-                           radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            }
-            50% { 
-                background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 70%),
-                           radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
-            }
-        }
-
-        .text-glow {
-            text-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
-        }
-
-        .interactive-element {
+        /* Toggle Button */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: white;
+        }
+        #theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        body.light-mode #theme-toggle {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #111827;
+        }
+        body.light-mode #theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
 
-        .interactive-element:hover {
-            transform: scale(1.02);
-        }
     </style>
 </head>
-<body>
-    <canvas id="bg-canvas"></canvas>
-    <div class="morphing-bg"></div>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
 
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
-        <div class="glass-card rounded-2xl overflow-hidden floating-card">
-            <header class="bg-gradient-to-br from-indigo-600/60 via-purple-600/50 to-blue-700/60 p-8 md:p-12 animate-on-scroll header-3d">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <img 
-                        src="images/my_photo.jpg" 
-                        alt="Aditya's Profile Photo" 
-                        class="profile-image w-36 h-36 md:w-40 md:h-40 rounded-full border-4 border-indigo-200/50 shadow-xl object-cover"
-                        onerror="this.onerror=null;this.src='https://placehold.co/160x160/E2E8F0/4A5568?text=Aditya';"
-                    >
-                    <div class="text-center md:text-left">
-                        <h1 id="resume-name" class="text-4xl md:text-5xl font-bold tracking-tight text-white text-glow">Aditya</h1>
-                        <p id="resume-title" class="text-xl md:text-2xl mt-2 text-indigo-200 font-light">Finance Enthusiast</p>
-                        <div class="flex justify-center md:justify-start flex-wrap gap-x-6 gap-y-2 mt-5 text-sm text-indigo-100">
-                            <span class="flex items-center interactive-element">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                kraditya9241@gmail.com
-                            </span>
-                            <span class="flex items-center interactive-element">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                                +91 9241551201
-                            </span>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-sun text-xl" id="theme-icon"></i>
+    </button>
+
+    <!-- Three.js Background & Blobs -->
+    <div id="canvas-container"></div>
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10">
+
+        <!-- Hero Section -->
+        <header class="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 pt-20 pb-10 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                <div class="space-y-8" data-aos="fade-right">
+                    <div class="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-indigo-300 backdrop-blur-sm animate-pulse">
+                        🚀 Exploring the intersection of Finance & AI
+                    </div>
+                    <h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-tight">
+                        <span class="text-gradient">Aditya</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 max-w-lg leading-relaxed">
+                        CS Student @ IIT Patna. Engineering the future of trading with 
+                        <span class="text-white font-semibold">Quantitative Analysis</span>, 
+                        <span class="text-white font-semibold">Algorithmic Strategies</span>, and 
+                        <span class="text-white font-semibold">Data Science</span>.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#" class="px-8 py-4 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors shadow-lg shadow-indigo-500/20">
+                            Contact Me
+                        </a>
+                        <a href="#projects" class="px-8 py-4 bg-white/5 border border-white/10 rounded-lg font-bold hover:bg-white/10 transition-colors backdrop-blur-sm">
+                            View Projects
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative" data-aos="fade-left">
+                    <!-- Tech/Finance Abstract Visual -->
+                    <div class="relative w-full aspect-square max-w-md mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/30 to-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+                        <div class="relative glass-card p-6 rounded-2xl border border-white/10 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                                <span class="text-xs font-mono text-gray-400">MARKET_ANALYSIS.PY</span>
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-2 font-mono text-xs md:text-sm text-green-400">
+                                <p><span class="text-purple-400">import</span> numpy <span class="text-purple-400">as</span> np</p>
+                                <p><span class="text-purple-400">import</span> pandas <span class="text-purple-400">as</span> pd</p>
+                                <p><span class="text-purple-400">from</span> keras.models <span class="text-purple-400">import</span> Sequential</p>
+                                <p class="text-gray-500"># Initializing LSTM Model</p>
+                                <p>model = Sequential()</p>
+                                <p>model.add(LSTM(<span class="text-orange-400">units</span>=50))</p>
+                                <p>model.add(Dense(<span class="text-orange-400">1</span>))</p>
+                                <p class="text-gray-500"># Predicting Trends...</p>
+                                <div class="mt-4 p-3 bg-black/30 rounded border border-white/5">
+                                    <p class="text-white">> Accuracy: 94.2%</p>
+                                    <p class="text-white">> Signal: <span class="text-green-500 font-bold">BUY</span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <main class="p-8 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div class="lg:col-span-2">
-                    <section id="resume-about" class="animate-on-scroll">
-                        <h2 class="section-header text-2xl font-bold text-indigo-400 pb-2 mb-4">About Me</h2>
-                        <p class="text-slate-300 leading-relaxed">
-                            Hi, I'm Aditya, an undergraduate at IIT Patna pursuing a B.S. in Computer Science and Data Analytics. I'm passionate about blending finance, technology, and data — from coding in C++ and Python to analyzing markets and building projects around trading, analytics, and research.
-                            <br><br>
-                            Currently, I'm preparing for the CFA Program and certifications like NISM/NCFM to deepen my knowledge in investments and portfolio management. My goal is to build a career at the intersection of quantitative finance and technology, contributing to innovative solutions in fintech, trading, and research.
-                        </p>
-                    </section>
-
-                    <section id="resume-projects" class="mt-12 animate-on-scroll">
-                        <h2 class="section-header text-2xl font-bold text-indigo-400 pb-2 mb-6">Projects</h2>
-                        <div class="space-y-8">
-                            <div class="project-card rounded-xl p-6">
-                                <div class="flex gap-4">
-                                    <div class="text-center text-sm text-slate-400 pt-1 w-24 flex-shrink-0">
-                                        <p class="font-semibold text-indigo-400">Q1 2025</p>
-                                    </div>
-                                    <div class="relative pl-8 border-l-2 border-slate-700">
-                                        <div class="timeline-item">
-                                            <h3 class="font-semibold text-lg text-slate-100">Zcash Portfolio Manager</h3>
-                                            <p class="mt-1 text-slate-300">Developed a comprehensive portfolio manager for zcash, analyzing and optimizing investments with a focus on risk management and growth.</p>
-                                            <div class="mt-3 flex flex-wrap gap-2">
-                                                <span class="skill-tag text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded-full">C++</span>
-                                                <span class="skill-tag text-sky-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
-                                                <span class="skill-tag text-teal-300 text-xs font-medium px-2.5 py-0.5 rounded-full">SQL</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-card rounded-xl p-6">
-                                <div class="flex gap-4">
-                                    <div class="text-center text-sm text-slate-400 pt-1 w-24 flex-shrink-0">
-                                        <p class="font-semibold text-indigo-400">Q1 2025</p>
-                                    </div>
-                                    <div class="relative pl-8 border-l-2 border-slate-700">
-                                        <div class="timeline-item">
-                                            <h3 class="font-semibold text-lg text-slate-100">Crypto Portfolio Manager</h3>
-                                            <p class="mt-1 text-slate-300">Created a versatile portfolio manager for crypto assets, implementing strategies to analyze and optimize investments for risk-adjusted returns.</p>
-                                            <div class="mt-3 flex flex-wrap gap-2">
-                                                <span class="skill-tag text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded-full">C++</span>
-                                                <span class="skill-tag text-sky-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
-                                                <span class="skill-tag text-teal-300 text-xs font-medium px-2.5 py-0.5 rounded-full">SQL</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+        <!-- Moving Bar (Marquee) -->
+        <div class="w-full bg-white/5 border-y border-white/5 py-6 backdrop-blur-md mb-24 transform -rotate-1">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span class="marquee-item"><i class="fas fa-brain text-purple-500 mx-2"></i> Artificial Intelligence</span>
+                    <span class="marquee-item"><i class="fas fa-robot text-blue-500 mx-2"></i> Machine Learning</span>
+                    <span class="marquee-item"><i class="fas fa-chart-line text-green-500 mx-2"></i> Stock Analysis</span>
+                    <span class="marquee-item"><i class="fas fa-code text-yellow-500 mx-2"></i> Python</span>
+                    <span class="marquee-item"><i class="fas fa-database text-red-500 mx-2"></i> Data Science</span>
+                    <span class="marquee-item"><i class="fas fa-exchange-alt text-teal-500 mx-2"></i> Derivatives Trading</span>
+                    <span class="marquee-item"><i class="fas fa-layer-group text-indigo-500 mx-2"></i> Deep Learning</span>
+                    <span class="marquee-item"><i class="fas fa-cogs text-gray-400 mx-2"></i> System Design</span>
+                    <!-- Duplicate for loop -->
+                     <span class="marquee-item"><i class="fas fa-brain text-purple-500 mx-2"></i> Artificial Intelligence</span>
+                    <span class="marquee-item"><i class="fas fa-robot text-blue-500 mx-2"></i> Machine Learning</span>
+                    <span class="marquee-item"><i class="fas fa-chart-line text-green-500 mx-2"></i> Stock Analysis</span>
                 </div>
-
-                <div class="lg:col-span-1 space-y-10">
-                    <section class="animate-on-scroll delay-100">
-                        <a href="https://www.linkedin.com/in/aditya-405437360/" target="_blank" rel="noopener noreferrer" class="linkedin-btn text-white font-bold py-3 px-4 rounded-lg w-full flex items-center justify-center shadow-lg transition-all duration-300">
-                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
-                            View LinkedIn Profile
-                        </a>
-                    </section>
-                    
-                    <section id="resume-skills" class="animate-on-scroll delay-200">
-                        <h2 class="section-header text-xl font-bold text-indigo-400 pb-2 mb-4">Skills</h2>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">Python</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">C++</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">SQL</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">HTML</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">CSS</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">JavaScript</span>
-                            <span class="skill-tag text-slate-200 text-sm font-medium px-3 py-1.5 rounded-md">Git & GitHub</span>
-                        </div>
-                    </section>
-
-                    <section class="animate-on-scroll delay-300">
-                        <h2 class="section-header text-xl font-bold text-indigo-400 pb-2 mb-4">Education</h2>
-                        <div class="space-y-4">
-                            <div class="interactive-element p-4 rounded-lg bg-slate-800/30 border border-indigo-500/20">
-                                <h3 class="font-semibold text-slate-100">B.S. in Computer Science & Data Analysis</h3>
-                                <p class="text-slate-400 text-sm">Indian Institute of Technology, Patna | 2025 - 2029</p>
-                            </div>
-                            <div class="interactive-element p-4 rounded-lg bg-slate-800/30 border border-indigo-500/20">
-                                <h3 class="font-semibold text-slate-100">Intermediate: Science</h3>
-                                <p class="text-slate-400 text-sm">K P S Memorial High School | 2021 - 2023</p>
-                            </div>
-                            <div class="interactive-element p-4 rounded-lg bg-slate-800/30 border border-indigo-500/20">
-                                <h3 class="font-semibold text-slate-100">Matriculation</h3>
-                                <p class="text-slate-400 text-sm">K P S Memorial High School | 2021</p>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <section id="resume-certificates" class="animate-on-scroll delay-400">
-                        <h2 class="section-header text-xl font-bold text-indigo-400 pb-2 mb-4">Certificates</h2>
-                        <div class="interactive-element p-4 rounded-lg bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-400/30">
-                            <h3 class="font-semibold text-slate-100">NISM Series VIII Certification</h3>
-                            <p class="text-slate-400 text-sm">Equity Derivatives | Jan 2025</p>
-                        </div>
-                    </section>
-                </div>
-            </main>
+            </div>
         </div>
-        
-        <footer class="text-center mt-8 p-4">
-            <p class="text-slate-400">
-                Get in touch: 
-                <a href="mailto:kraditya9241@gmail.com" class="font-medium text-indigo-400 hover:underline interactive-element">kraditya9241@gmail.com</a> |
-                <a href="tel:+919241551201" class="font-medium text-indigo-400 hover:underline interactive-element">+91 9241551201</a>
-            </p>
-            <p class="text-xs text-slate-500 mt-4">
-                &copy; 2025 Aditya. Built with HTML, Tailwind CSS, and Three.js.
-            </p>
+
+        <div class="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto space-y-32 pb-24">
+
+            <!-- Projects Section -->
+            <section id="projects" data-aos="fade-up">
+                <div class="flex items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span class="text-gradient">Projects</span></h2>
+                        <p class="text-gray-400 max-w-md">Bridging the gap between financial theory and computational power.</p>
+                    </div>
+                    <a href="#" class="hidden md:block text-indigo-400 hover:text-indigo-600 transition-colors">View all projects <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1: LSTM -->
+                    <div class="glass-card rounded-3xl overflow-hidden group">
+                        <div class="h-48 bg-gradient-to-br from-indigo-900/50 to-purple-900/50 p-6 flex items-center justify-center relative">
+                            <i class="fas fa-wave-square text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                            <div class="absolute bottom-4 left-6 flex gap-2">
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Python</span>
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">TensorFlow</span>
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">LSTM</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-3">Stock Market Analysis (LSTM)</h3>
+                            <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                                A Deep Learning model utilizing Long Short-Term Memory (LSTM) networks to predict future stock price trends based on historical time-series data. Features include volatility analysis and moving average crossovers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: KNN -->
+                    <div class="glass-card rounded-3xl overflow-hidden group">
+                        <div class="h-48 bg-gradient-to-br from-blue-900/50 to-teal-900/50 p-6 flex items-center justify-center relative">
+                            <i class="fas fa-project-diagram text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                            <div class="absolute bottom-4 left-6 flex gap-2">
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Scikit-Learn</span>
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">KNN</span>
+                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Pandas</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-3">Stock Trend Classification (KNN)</h3>
+                            <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                                Implemented K-Nearest Neighbors (KNN) algorithm to classify market sentiments and stock performance. Analyzes features like volume, open-close difference, and daily returns to categorize potential buy/sell signals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center md:text-left">Professional <span class="text-gradient">Certifications</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Cert 1: NISM -->
+                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-green-500">
+                        <div class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center text-2xl text-green-500 shrink-0">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">NISM Series VIII</h3>
+                            <p class="text-green-500 font-medium mb-3">Equity Derivatives Certification</p>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Validated expertise in the Indian equity derivatives market, covering trading strategies, clearing, settlement, and risk management frameworks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 2: CFA (In Progress) -->
+                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-yellow-500 relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-yellow-500/20 text-yellow-600 text-xs px-2 py-1 rounded font-bold">IN PROGRESS</div>
+                        <div class="w-16 h-16 rounded-full bg-yellow-500/10 flex items-center justify-center text-2xl text-yellow-500 shrink-0">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">CFA Level 1</h3>
+                            <p class="text-yellow-500 font-medium mb-3">Chartered Financial Analyst</p>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Currently preparing for the CFA Level 1 exam. Focusing on ethical standards, quantitative methods, economics, and financial reporting.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Finance Knowledge Section -->
+            <section data-aos="fade-left">
+                <div class="glass-card rounded-3xl p-8 md:p-12 border-l-4 border-teal-500 relative overflow-hidden">
+                    <!-- Background accent -->
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                                <i class="fas fa-chart-bar text-teal-400"></i> Financial Markets
+                            </h2>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Beyond coding, I possess deep theoretical and practical knowledge of financial instruments. My expertise lies in derivatives, specifically crafting strategies that hedge risk while maximizing returns.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400"><i class="fas fa-balance-scale"></i></div>
+                                    <div>
+                                        <h4 class="font-bold">Options Trading</h4>
+                                        <p class="text-xs text-gray-400">Greeks (Delta, Gamma, Theta), Spreads, Straddles</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400"><i class="fas fa-file-contract"></i></div>
+                                    <div>
+                                        <h4 class="font-bold">Derivatives & Futures</h4>
+                                        <p class="text-xs text-gray-400">Hedging strategies, Margin trading, Settlement</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visual Representation of a "Terminal" (Always Dark) -->
+                        <div class="bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-xs shadow-2xl">
+                            <div class="flex justify-between text-gray-500 mb-2 border-b border-white/10 pb-2">
+                                <span>INSTRUMENT</span>
+                                <span>LAST</span>
+                                <span>CHG</span>
+                            </div>
+                            <div class="flex justify-between text-white py-1">
+                                <span class="text-green-400">NIFTY 50 CE</span>
+                                <span>22,450.00</span>
+                                <span class="text-green-400">+1.2%</span>
+                            </div>
+                            <div class="flex justify-between text-white py-1 bg-white/5">
+                                <span class="text-red-400">BANKNIFTY PE</span>
+                                <span>47,100.00</span>
+                                <span class="text-red-400">-0.8%</span>
+                            </div>
+                            <div class="flex justify-between text-white py-1">
+                                <span class="text-green-400">RELIANCE FUT</span>
+                                <span>2,980.50</span>
+                                <span class="text-green-400">+0.5%</span>
+                            </div>
+                            
+                            <!-- Simple SVG Graph -->
+                            <div class="mt-4 h-32 w-full bg-white/5 rounded border border-white/5 relative flex items-end px-2 pb-2 gap-1">
+                                <div class="w-1/6 h-[40%] bg-red-500/50 rounded-t"></div>
+                                <div class="w-1/6 h-[60%] bg-green-500/50 rounded-t"></div>
+                                <div class="w-1/6 h-[50%] bg-red-500/50 rounded-t"></div>
+                                <div class="w-1/6 h-[80%] bg-green-500/50 rounded-t"></div>
+                                <div class="w-1/6 h-[70%] bg-green-500/50 rounded-t"></div>
+                                <div class="w-1/6 h-[95%] bg-green-500/50 rounded-t animate-pulse"></div>
+                                <div class="absolute top-2 right-2 text-[10px] text-green-400 font-bold">LIVE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DSA Glimpse Section -->
+            <section data-aos="zoom-in">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold">Algorithms & <span class="text-indigo-400">Data Structures</span></h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                        <i class="fas fa-sitemap text-3xl text-indigo-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Graph Theory</h3>
+                        <p class="text-gray-400 text-sm">BFS, DFS, Dijkstra, Minimum Spanning Trees. Optimized for network analysis.</p>
+                    </div>
+                    
+                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300" style="border-color: #ec4899;">
+                        <i class="fas fa-cube text-3xl text-pink-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Programming</h3>
+                        <p class="text-gray-400 text-sm">Optimization problems, Knapsack, Matrix Chain Multiplication.</p>
+                    </div>
+
+                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300" style="border-color: #14b8a6;">
+                        <i class="fas fa-tree text-3xl text-teal-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Trees & Heaps</h3>
+                        <p class="text-gray-400 text-sm">Binary Search Trees, AVL, Segment Trees, Priority Queues.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="mb-24" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 border-l-4 border-blue-500 pl-4">Experience</h2>
+                
+                <div class="glass-card p-8 md:p-10 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16 transition-all group-hover:bg-blue-600/20"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-blue-400">Primary School Teacher</h3>
+                            <h4 class="text-xl font-semibold mb-2">Gautam Bright School</h4>
+                            <p class="text-sm text-gray-400 mb-4"><i class="far fa-calendar-alt mr-2"></i>July 2023 - March 2025 • Patna, Bihar, India</p>
+                            
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 marker:text-blue-500">
+                                <li>Taught core subjects to primary-level students, focusing on conceptual clarity and engagement.</li>
+                                <li>Developed lesson plans, managed classrooms, and conducted parent-teacher meetings.</li>
+                                <li>Built strong communication and leadership skills through this role.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Future Planning Section -->
+            <section data-aos="fade-up" class="mb-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Future <span class="text-gradient">Roadmap</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">
+                        "Bridging the gap between coding and markets, combining logic, curiosity, and data to drive performance."
+                    </p>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Vertical Line -->
+                    <div class="hidden md:block timeline-line"></div>
+
+                    <!-- Step 1 -->
+                    <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
+                        <div class="text-right hidden md:block" data-aos="fade-right">
+                            <h3 class="text-2xl font-bold text-indigo-400">Current Focus</h3>
+                            <p class="text-gray-400 mt-2">Mastering Python, Financial Modeling, and Algorithmic Trading foundations.</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-indigo-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
+                        <div class="md:pl-12" data-aos="fade-left">
+                            <div class="glass-card p-6 rounded-xl">
+                                <i class="fas fa-laptop-code text-2xl text-indigo-400 mb-2"></i>
+                                <h4 class="font-bold text-lg">Skill Acquisition</h4>
+                                <p class="text-sm text-gray-400">Building reliable, backtested trading strategies and strengthening Data Analytics core.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
+                        <div class="md:text-right order-2 md:order-1 md:pr-12" data-aos="fade-right">
+                            <div class="glass-card p-6 rounded-xl border border-yellow-500/30">
+                                <i class="fas fa-award text-2xl text-yellow-400 mb-2"></i>
+                                <h4 class="font-bold text-lg">Certifications</h4>
+                                <p class="text-sm text-gray-400">Completion of CFA Level 1, NSE Academy certifications, and advanced NISM modules.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-yellow-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
+                        <div class="order-1 md:order-2 hidden md:block" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-yellow-400">Professional Validation</h3>
+                            <p class="text-gray-400 mt-2">Gaining recognized credentials to solidify financial domain knowledge.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative grid md:grid-cols-2 gap-8 items-center">
+                        <div class="text-right hidden md:block" data-aos="fade-right">
+                            <h3 class="text-2xl font-bold text-pink-400">Ultimate Goal</h3>
+                            <p class="text-gray-400 mt-2">A role that demands both high-level coding and deep market insight.</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-black z-10 hidden md:block animate-pulse"></div>
+                        <div class="md:pl-12" data-aos="fade-left">
+                            <div class="glass-card p-6 rounded-xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-pink-500/50">
+                                <i class="fas fa-crosshairs text-2xl text-pink-400 mb-2"></i>
+                                <h4 class="font-bold text-lg">Quantitative Analyst</h4>
+                                <p class="text-sm text-gray-400">Becoming a Quant or Research Analyst. Leveraging data to solve complex financial problems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/10 bg-black/50 backdrop-blur-lg mt-12 py-12">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-bold">Aditya</h2>
+                    <p class="text-sm text-gray-500">Quant | Finance | Data</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="https://www.linkedin.com/in/aditya-405437360" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="https://github.com/sinhaaditya9241" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-github text-2xl"></i></a>
+                    <a href="mailto:kraditya9241@gmail.com" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
+                </div>
+            </div>
+            <div class="text-center text-gray-600 text-xs mt-8">
+                &copy; 2025 Aditya. Designed with Fusion Aesthetics.
+            </div>
         </footer>
+
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // --- On-Scroll Animation Logic ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            const sectionHeaders = document.querySelectorAll('.section-header');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            animatedElements.forEach(el => observer.observe(el));
-            sectionHeaders.forEach(el => observer.observe(el));
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            mirror: false,
         });
 
-        // --- Enhanced Three.js Background Animation ---
-        let scene, camera, renderer, stars, starGeo, particles, particleGeo;
-        let mouseX = 0, mouseY = 0;
-        let targetRotationX = 0, targetRotationY = 0;
+        // Theme Toggle Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+        let isLightMode = false;
 
-        function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-            camera.position.z = 400;
+        // Global references for Three.js objects to update them dynamically
+        let particlesMaterialRef, lineMaterialRef;
 
-            renderer = new THREE.WebGLRenderer({
-                canvas: document.getElementById("bg-canvas"),
-                antialias: true,
-                alpha: true,
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0x000000, 0);
-
-            // Create multiple particle systems
-            createStarField();
-            createFloatingParticles();
-            createNebula();
-
-            window.addEventListener("resize", onWindowResize, false);
-            document.addEventListener('mousemove', onMouseMove, false);
-
-            animate();
-        }
-
-        function createStarField() {
-            starGeo = new THREE.BufferGeometry();
-            const starVertices = [];
-            const starColors = [];
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            isLightMode = body.classList.contains('light-mode');
             
-            for (let i = 0; i < 10000; i++) {
-                const x = (Math.random() - 0.5) * 2000;
-                const y = (Math.random() - 0.5) * 2000;
-                const z = (Math.random() - 0.5) * 2000;
-                starVertices.push(x, y, z);
-                
-                // Add color variation
-                const color = new THREE.Color();
-                color.setHSL(0.6 + Math.random() * 0.2, 0.5 + Math.random() * 0.5, 0.5 + Math.random() * 0.5);
-                starColors.push(color.r, color.g, color.b);
+            // Update Icon
+            if (isLightMode) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             }
-            
-            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-            starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
 
-            const starMaterial = new THREE.PointsMaterial({
-                size: 1.5,
-                vertexColors: true,
+            // Update Three.js Colors
+            if (particlesMaterialRef && lineMaterialRef) {
+                if (isLightMode) {
+                    particlesMaterialRef.color.setHex(0x4f46e5); // Indigo-600
+                    lineMaterialRef.color.setHex(0x6366f1); // Indigo-500
+                    lineMaterialRef.opacity = 0.2; // Darker lines
+                } else {
+                    particlesMaterialRef.color.setHex(0x818cf8); // Indigo-400
+                    lineMaterialRef.color.setHex(0x6366f1); // Indigo-500
+                    lineMaterialRef.opacity = 0.08; // Lighter lines
+                }
+            }
+        });
+
+        // THREE.JS ANIMATION CODE
+        const initThreeJS = () => {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            
+            // Camera setup
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            // Renderer setup
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 450; 
+
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 70; 
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            // Material for dots
+            particlesMaterialRef = new THREE.PointsMaterial({
+                size: 0.12,
+                color: 0x818cf8, // Indigo-400 (Default Dark Mode)
                 transparent: true,
                 opacity: 0.8,
-                blending: THREE.AdditiveBlending,
             });
 
-            stars = new THREE.Points(starGeo, starMaterial);
-            scene.add(stars);
-        }
+            // Mesh
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterialRef);
+            scene.add(particlesMesh);
 
-        function createFloatingParticles() {
-            particleGeo = new THREE.BufferGeometry();
-            const particleVertices = [];
-            const particleSizes = [];
-            
-            for (let i = 0; i < 1000; i++) {
-                const x = (Math.random() - 0.5) * 1000;
-                const y = (Math.random() - 0.5) * 1000;
-                const z = (Math.random() - 0.5) * 1000;
-                particleVertices.push(x, y, z);
-                particleSizes.push(Math.random() * 4 + 1);
-            }
-            
-            particleGeo.setAttribute('position', new THREE.Float32BufferAttribute(particleVertices, 3));
-            particleGeo.setAttribute('size', new THREE.Float32BufferAttribute(particleSizes, 1));
-
-            const particleMaterial = new THREE.PointsMaterial({
-                color: 0x4f46e5,
-                size: 3,
+            // Lines connecting particles
+            lineMaterialRef = new THREE.LineBasicMaterial({
+                color: 0x6366f1, // Indigo-500
                 transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending,
-                sizeAttenuation: true,
+                opacity: 0.08 
             });
 
-            particles = new THREE.Points(particleGeo, particleMaterial);
-            scene.add(particles);
-        }
+            const linesGeometry = new THREE.BufferGeometry();
+            const linesMesh = new THREE.LineSegments(linesGeometry, lineMaterialRef);
+            scene.add(linesMesh);
 
-        function createNebula() {
-            const nebulaGeo = new THREE.BufferGeometry();
-            const nebulaVertices = [];
-            const nebulaColors = [];
-            
-            for (let i = 0; i < 2000; i++) {
-                const x = (Math.random() - 0.5) * 1500;
-                const y = (Math.random() - 0.5) * 1500;
-                const z = (Math.random() - 0.5) * 1500;
-                nebulaVertices.push(x, y, z);
+            // Mouse Interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - windowHalfX);
+                mouseY = (event.clientY - windowHalfY);
+            });
+
+            // Animation Loop
+            const clock = new THREE.Clock();
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+
+                targetX = mouseX * 0.001;
+                targetY = mouseY * 0.001;
+
+                const elapsedTime = clock.getElapsedTime();
+
+                // Fluid rotation
+                particlesMesh.rotation.y = .05 * elapsedTime;
+                particlesMesh.rotation.x = .02 * elapsedTime;
+                linesMesh.rotation.y = .05 * elapsedTime;
+                linesMesh.rotation.x = .02 * elapsedTime;
+
+                // Mouse movement effect
+                particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+                particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+                // Update connecting lines dynamically
+                updateLines();
+
+                renderer.render(scene, camera);
+            };
+
+            // Function to draw lines between close particles
+            function updateLines() {
+                const positions = particlesMesh.geometry.attributes.position.array;
+                const linePositions = [];
                 
-                const color = new THREE.Color();
-                color.setHSL(0.7 + Math.random() * 0.3, 0.7, 0.3 + Math.random() * 0.4);
-                nebulaColors.push(color.r, color.g, color.b);
-            }
-            
-            nebulaGeo.setAttribute('position', new THREE.Float32BufferAttribute(nebulaVertices, 3));
-            nebulaGeo.setAttribute('color', new THREE.Float32BufferAttribute(nebulaColors, 3));
+                particlesMesh.updateMatrixWorld();
 
-            const nebulaMaterial = new THREE.PointsMaterial({
-                size: 5,
-                vertexColors: true,
-                transparent:true,
-                opacity: 0.3,
-                blending: THREE.AdditiveBlending,
-            });
+                const connectDistance = 3.5; 
 
-            const nebula = new THREE.Points(nebulaGeo, nebulaMaterial);
-            scene.add(nebula);
-        }
+                // Optimization
+                for (let i = 0; i < 150; i++) {
+                    const x1 = positions[i * 3];
+                    const y1 = positions[i * 3 + 1];
+                    const z1 = positions[i * 3 + 2];
 
-        function onMouseMove(event) {
-            mouseX = (event.clientX - window.innerWidth / 2) / 100;
-            mouseY = (event.clientY - window.innerHeight / 2) / 100;
-            
-            targetRotationX = mouseY * 0.05;
-            targetRotationY = mouseX * 0.05;
-        }
+                    for (let j = i + 1; j < particlesCount; j++) {
+                        const x2 = positions[j * 3];
+                        const y2 = positions[j * 3 + 1];
+                        const z2 = positions[j * 3 + 2];
 
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
+                        const dist = Math.sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2);
 
-        function animate() {
-            requestAnimationFrame(animate);
-
-            const time = Date.now() * 0.0005;
-
-            if (stars) {
-                stars.rotation.x += 0.0005;
-                stars.rotation.y += 0.0003;
-                
-                // Add mouse interaction
-                stars.rotation.x += (targetRotationX - stars.rotation.x) * 0.02;
-                stars.rotation.y += (targetRotationY - stars.rotation.y) * 0.02;
-            }
-
-            if (particles) {
-                particles.rotation.x += 0.001;
-                particles.rotation.y += 0.002;
-                
-                // Floating motion
-                const positions = particles.geometry.attributes.position.array;
-                for (let i = 0; i < positions.length; i += 3) {
-                    positions[i + 1] += Math.sin(time + positions[i] * 0.01) * 0.1;
+                        if (dist < connectDistance) {
+                            linePositions.push(x1, y1, z1);
+                            linePositions.push(x2, y2, z2);
+                        }
+                    }
                 }
-                particles.geometry.attributes.position.needsUpdate = true;
+
+                linesMesh.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+                linesMesh.rotation.copy(particlesMesh.rotation);
             }
 
-            renderer.render(scene, camera);
-        }
+            animate();
 
-        // Initialize Three.js scene
-        init();
-
-        // Add smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+            // Handle Resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-        });
+        };
 
-        // Add typing animation for name
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function typing() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typing, speed);
-                }
-            }
-            typing();
-        }
+        window.onload = initThreeJS;
 
-        // Initialize typing animation when page loads
-        window.addEventListener('load', () => {
-            const nameElement = document.getElementById('resume-name');
-            if (nameElement) {
-                typeWriter(nameElement, 'Aditya', 150);
-            }
-        });
-
-        // Add parallax scrolling effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            
-            if (stars) {
-                stars.rotation.y = rate * 0.0001;
-            }
-            if (particles) {
-                particles.rotation.x = rate * 0.0002;
-            }
-        });
-
-        // Add interactive skill tags
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.05) rotateX(10deg)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
-            });
-        });
-
-        // Add glitch effect on profile image
-        const profileImg = document.querySelector('.profile-image');
-        if (profileImg) {
-            profileImg.addEventListener('mouseenter', function() {
-                this.style.filter = 'drop-shadow(0 30px 60px rgba(79, 70, 229, 0.5)) hue-rotate(45deg)';
-            });
-            
-            profileImg.addEventListener('mouseleave', function() {
-                this.style.filter = 'drop-shadow(0 20px 40px rgba(79, 70, 229, 0.3))';
-            });
-        }
     </script>
 </body>
 </html>
