@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya | Quant, Finance & Data</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -21,19 +24,23 @@
         :root {
             --bg-color: #050505;
             --text-main: #ffffff;
-            --text-muted: #9ca3af; /* gray-400 */
+            --text-muted: #9ca3af;
+            /* gray-400 */
             --glass-bg: rgba(20, 20, 25, 0.6);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-hover-bg: rgba(30, 30, 40, 0.8);
             --card-shadow: rgba(99, 102, 241, 0.15);
-            --marquee-color: rgba(255,255,255,0.7);
+            --marquee-color: rgba(255, 255, 255, 0.7);
         }
 
         /* Light Mode Variables */
         body.light-mode {
-            --bg-color: #f8fafc; /* slate-50 */
-            --text-main: #111827; /* gray-900 */
-            --text-muted: #4b5563; /* gray-600 */
+            --bg-color: #f8fafc;
+            /* slate-50 */
+            --text-main: #111827;
+            /* gray-900 */
+            --text-muted: #4b5563;
+            /* gray-600 */
             --glass-bg: rgba(255, 255, 255, 0.65);
             --glass-border: rgba(0, 0, 0, 0.1);
             --glass-hover-bg: rgba(255, 255, 255, 0.9);
@@ -50,17 +57,50 @@
         }
 
         /* Overrides for specific tailwind classes in light mode */
-        body.light-mode .text-white { color: var(--text-main) !important; }
-        body.light-mode .text-gray-400 { color: var(--text-muted) !important; }
-        body.light-mode .text-gray-300 { color: #374151 !important; } /* gray-700 */
-        body.light-mode .text-gray-500 { color: #6b7280 !important; }
-        
-        body.light-mode .bg-white\/5 { background-color: rgba(0,0,0,0.05) !important; }
-        body.light-mode .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
-        body.light-mode .border-white\/5 { border-color: rgba(0,0,0,0.05) !important; }
-        body.light-mode .bg-black\/50 { background-color: rgba(255,255,255,0.7) !important; color: #000; }
-        body.light-mode .bg-black\/40 { background-color: rgba(30, 41, 59, 0.9) !important; color: #fff; } /* Keep terminal dark */
-        body.light-mode footer.bg-black\/50 { background-color: rgba(255,255,255,0.8) !important; border-top: 1px solid rgba(0,0,0,0.1); }
+        body.light-mode .text-white {
+            color: var(--text-main) !important;
+        }
+
+        body.light-mode .text-gray-400 {
+            color: var(--text-muted) !important;
+        }
+
+        body.light-mode .text-gray-300 {
+            color: #374151 !important;
+        }
+
+        /* gray-700 */
+        body.light-mode .text-gray-500 {
+            color: #6b7280 !important;
+        }
+
+        body.light-mode .bg-white\/5 {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        body.light-mode .border-white\/10 {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        body.light-mode .border-white\/5 {
+            border-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        body.light-mode .bg-black\/50 {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            color: #000;
+        }
+
+        body.light-mode .bg-black\/40 {
+            background-color: rgba(30, 41, 59, 0.9) !important;
+            color: #fff;
+        }
+
+        /* Keep terminal dark */
+        body.light-mode footer.bg-black\/50 {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
 
         /* Three.js Canvas Container */
         #canvas-container {
@@ -85,14 +125,41 @@
             animation: float 10s infinite ease-in-out;
             pointer-events: none;
         }
-        .blob-1 { top: -20%; left: -10%; animation-delay: 0s; }
-        .blob-2 { bottom: -20%; right: -10%; background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: 2s; }
-        .blob-3 { top: 40%; left: 40%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: 4s; }
+
+        .blob-1 {
+            top: -20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            animation-delay: 2s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 40%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            animation-delay: 4s;
+        }
 
         @keyframes float {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 50px); }
-            100% { transform: translate(0, 0); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, 50px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
         }
 
         /* Glassmorphism Cards */
@@ -117,7 +184,7 @@
             white-space: nowrap;
             position: relative;
         }
-        
+
         .marquee-content {
             display: inline-block;
             animation: marquee 25s linear infinite;
@@ -132,8 +199,13 @@
         }
 
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* Code Block Styling */
@@ -142,12 +214,22 @@
             background: #1e1e1e;
             border-left: 3px solid #6366f1;
         }
+
         /* Keep code blocks dark in light mode for contrast, maybe slightly lighter shadow */
         body.light-mode .code-block {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        body.light-mode .code-block h3 { color: white !important; } /* Keep title white inside dark block */
-        body.light-mode .code-block p { color: #9ca3af !important; } /* Keep text gray inside dark block */
+
+        body.light-mode .code-block h3 {
+            color: white !important;
+        }
+
+        /* Keep title white inside dark block */
+        body.light-mode .code-block p {
+            color: #9ca3af !important;
+        }
+
+        /* Keep text gray inside dark block */
 
 
         /* Timeline Styles */
@@ -165,22 +247,43 @@
         .text-gradient {
             background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         /* Darker gradient for light mode visibility */
         body.light-mode .text-gradient {
             background: linear-gradient(to right, #4f46e5, #9333ea, #db2777);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-        body.light-mode ::-webkit-scrollbar-thumb { background: #cbd5e1; }
-        body.light-mode ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body.light-mode ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        body.light-mode ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
 
         /* Toggle Button */
         #theme-toggle {
@@ -201,15 +304,18 @@
             transition: all 0.3s ease;
             color: white;
         }
+
         #theme-toggle:hover {
             transform: rotate(15deg) scale(1.1);
             background: rgba(255, 255, 255, 0.2);
         }
+
         body.light-mode #theme-toggle {
             background: rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(0, 0, 0, 0.1);
             color: #111827;
         }
+
         body.light-mode #theme-toggle:hover {
             background: rgba(0, 0, 0, 0.1);
         }
@@ -231,10 +337,12 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+
         #lightbox.active {
             display: flex;
             opacity: 1;
         }
+
         #lightbox img {
             max-width: 90%;
             max-height: 90%;
@@ -243,13 +351,16 @@
             transform: scale(0.9);
             transition: transform 0.3s ease;
         }
+
         #lightbox.active img {
             transform: scale(1);
         }
+
         .gallery-img {
             cursor: zoom-in;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
+
         .gallery-img:hover {
             transform: scale(1.05);
             filter: brightness(1.1);
@@ -261,6 +372,7 @@
         }
     </style>
 </head>
+
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
 
     <!-- Theme Toggle Button -->
@@ -283,37 +395,59 @@
     <div class="relative z-10">
 
         <!-- Hero Section -->
-        <header class="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 pt-20 pb-10 max-w-7xl mx-auto">
+        <header
+            class="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 pt-20 pb-10 max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
                 <div class="space-y-8" data-aos="fade-right">
-                    <div class="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-indigo-300 backdrop-blur-sm animate-pulse">
-                        🚀 Exploring the intersection of Finance & AI
+                    <div
+                        class="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-indigo-300 backdrop-blur-sm animate-pulse">
+                        📍 Patna, India • IIT Patna
                     </div>
                     <h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-tight">
                         <span class="text-gradient">Aditya</span>
                     </h1>
                     <p class="text-xl text-gray-400 max-w-lg leading-relaxed">
-                        CS Student @ IIT Patna. Engineering the future of trading with 
-                        <span class="text-white font-semibold">Quantitative Analysis</span>, 
-                        <span class="text-white font-semibold">Algorithmic Strategies</span>, and 
-                        <span class="text-white font-semibold">Data Science</span>.
+                        Computer Science & Data Analytics student at <span class="text-white font-semibold">IIT
+                            Patna</span> specializing in
+                        <span class="text-white font-semibold">machine learning</span>,
+                        <span class="text-white font-semibold">time-series forecasting</span>, and
+                        <span class="text-white font-semibold">data engineering</span>.
                     </p>
-                    
+                    <p class="text-base text-gray-500 max-w-lg leading-relaxed mt-2">
+                        Building end-to-end predictive systems for finance and supply chains — turning large, messy data
+                        into deployable decision engines.
+                    </p>
+
                     <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#" class="px-8 py-4 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors shadow-lg shadow-indigo-500/20">
-                            Contact Me
+                        <a href="mailto:kraditya9241@gmail.com"
+                            class="px-8 py-4 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors shadow-lg shadow-indigo-500/20">
+                            <i class="fas fa-envelope mr-2"></i>Contact Me
                         </a>
-                        <a href="#projects" class="px-8 py-4 bg-white/5 border border-white/10 rounded-lg font-bold hover:bg-white/10 transition-colors backdrop-blur-sm">
-                            View Projects
+                        <a href="#projects"
+                            class="px-8 py-4 bg-white/5 border border-white/10 rounded-lg font-bold hover:bg-white/10 transition-colors backdrop-blur-sm">
+                            View Projects <i class="fas fa-arrow-down ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="flex gap-4 pt-6">
+                        <a href="https://www.linkedin.com/in/aditya-405437360" target="_blank"
+                            class="text-gray-400 hover:text-indigo-400 transition-colors" title="LinkedIn">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/sinhaaditya9241" target="_blank"
+                            class="text-gray-400 hover:text-indigo-400 transition-colors" title="GitHub">
+                            <i class="fab fa-github text-2xl"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="hidden lg:block relative" data-aos="fade-left">
                     <!-- Tech/Finance Abstract Visual -->
                     <div class="relative w-full aspect-square max-w-md mx-auto">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/30 to-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
-                        <div class="relative glass-card p-6 rounded-2xl border border-white/10 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-indigo-500/30 to-purple-500/30 rounded-full blur-3xl animate-pulse">
+                        </div>
+                        <div
+                            class="relative glass-card p-6 rounded-2xl border border-white/10 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                             <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
                                 <span class="text-xs font-mono text-gray-400">MARKET_ANALYSIS.PY</span>
                                 <div class="flex gap-2">
@@ -323,9 +457,12 @@
                                 </div>
                             </div>
                             <div class="space-y-2 font-mono text-xs md:text-sm text-green-400">
-                                <p><span class="text-purple-400">import</span> numpy <span class="text-purple-400">as</span> np</p>
-                                <p><span class="text-purple-400">import</span> pandas <span class="text-purple-400">as</span> pd</p>
-                                <p><span class="text-purple-400">from</span> keras.models <span class="text-purple-400">import</span> Sequential</p>
+                                <p><span class="text-purple-400">import</span> numpy <span
+                                        class="text-purple-400">as</span> np</p>
+                                <p><span class="text-purple-400">import</span> pandas <span
+                                        class="text-purple-400">as</span> pd</p>
+                                <p><span class="text-purple-400">from</span> keras.models <span
+                                        class="text-purple-400">import</span> Sequential</p>
                                 <p class="text-gray-500"># Initializing LSTM Model</p>
                                 <p>model = Sequential()</p>
                                 <p>model.add(LSTM(<span class="text-orange-400">units</span>=50))</p>
@@ -333,7 +470,8 @@
                                 <p class="text-gray-500"># Predicting Trends...</p>
                                 <div class="mt-4 p-3 bg-black/30 rounded border border-white/5">
                                     <p class="text-white">> Accuracy: 94.2%</p>
-                                    <p class="text-white">> Signal: <span class="text-green-500 font-bold">BUY</span></p>
+                                    <p class="text-white">> Signal: <span class="text-green-500 font-bold">BUY</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -342,24 +480,123 @@
             </div>
         </header>
 
-        <!-- Moving Bar (Marquee) -->
-        <div class="w-full bg-white/5 border-y border-white/5 py-6 backdrop-blur-md mb-24 transform -rotate-1">
-            <div class="marquee-container">
-                <div class="marquee-content">
-                    <span class="marquee-item"><i class="fas fa-brain text-purple-500 mx-2"></i> Artificial Intelligence</span>
-                    <span class="marquee-item"><i class="fas fa-robot text-blue-500 mx-2"></i> Machine Learning</span>
-                    <span class="marquee-item"><i class="fas fa-chart-line text-green-500 mx-2"></i> Stock Analysis</span>
-                    <span class="marquee-item"><i class="fas fa-code text-yellow-500 mx-2"></i> Python</span>
-                    <span class="marquee-item"><i class="fas fa-database text-red-500 mx-2"></i> Data Science</span>
-                    <span class="marquee-item"><i class="fas fa-exchange-alt text-teal-500 mx-2"></i> Derivatives Trading</span>
-                    <span class="marquee-item"><i class="fas fa-layer-group text-indigo-500 mx-2"></i> Deep Learning</span>
-                    <span class="marquee-item"><i class="fas fa-cogs text-gray-400 mx-2"></i> System Design</span>
-                    <!-- Duplicate for loop -->
-                     <span class="marquee-item"><i class="fas fa-brain text-purple-500 mx-2"></i> Artificial Intelligence</span>
-                    <span class="marquee-item"><i class="fas fa-robot text-blue-500 mx-2"></i> Machine Learning</span>
-                    <span class="marquee-item"><i class="fas fa-chart-line text-green-500 mx-2"></i> Stock Analysis</span>
+        <!-- Skills Section -->
+        <div class="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto mb-32">
+            <section data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Core <span class="text-gradient">Skills</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Technical expertise in machine learning, data
+                        engineering, and financial analytics</p>
                 </div>
-            </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- ML & Forecasting -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center text-2xl text-indigo-400 mb-4">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">ML & Forecasting</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Pandas</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">NumPy</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Scikit-Learn</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">XGBoost</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">TensorFlow</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Prophet</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">HMM</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">KMeans</span>
+                        </div>
+                    </div>
+
+                    <!-- Data Engineering -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-2xl text-green-400 mb-4">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Data Engineering</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">SQL</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Postgres</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Airflow</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">ETL
+                                Pipelines</span>
+                        </div>
+                    </div>
+
+                    <!-- Visualization -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-2xl text-purple-400 mb-4">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Dashboards & Viz</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Streamlit</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Plotly</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">React</span>
+                        </div>
+                    </div>
+
+                    <!-- Financial Analytics -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-2xl text-yellow-400 mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Financial Analytics</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Sharpe
+                                Ratio</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Drawdown</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Risk
+                                Metrics</span>
+                        </div>
+                    </div>
+
+                    <!-- Domain Expertise -->
+                    <div class="glass-card p-6 rounded-2xl md:col-span-2">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-teal-500/10 flex items-center justify-center text-2xl text-teal-400 mb-4">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Domain Expertise</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Supply
+                                Chain Optimization</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Financial
+                                Markets</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Time-Series
+                                Analysis</span>
+                            <span
+                                class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">Regime
+                                Detection</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <div class="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto space-y-32 pb-24">
@@ -368,320 +605,535 @@
             <section id="projects" data-aos="fade-up">
                 <div class="flex items-end justify-between mb-12">
                     <div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span class="text-gradient">Projects</span></h2>
-                        <p class="text-gray-400 max-w-md">Bridging the gap between financial theory and computational power.</p>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span
+                                class="text-gradient">Projects</span></h2>
+                        <p class="text-gray-400 max-w-md">Production-grade ML systems for finance and supply chain
+                            intelligence</p>
                     </div>
-                    <a href="#" class="hidden md:block text-indigo-400 hover:text-indigo-600 transition-colors">View all projects <i class="fas fa-arrow-right ml-2"></i></a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Project 1: LSTM -->
+                <div class="space-y-8">
+                    <!-- Project 1: AI Time-Series Regime Detection -->
                     <div class="glass-card rounded-3xl overflow-hidden group">
-                        <div class="h-48 bg-gradient-to-br from-indigo-900/50 to-purple-900/50 p-6 flex items-center justify-center relative">
-                            <i class="fas fa-wave-square text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
-                            <div class="absolute bottom-4 left-6 flex gap-2">
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Python</span>
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">TensorFlow</span>
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">LSTM</span>
-                            </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-3">Stock Market Analysis (LSTM)</h3>
-                            <p class="text-gray-400 mb-6 text-sm leading-relaxed">
-                                A Deep Learning model utilizing Long Short-Term Memory (LSTM) networks to predict future stock price trends based on historical time-series data. Features include volatility analysis and moving average crossovers.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: KNN -->
-                    <div class="glass-card rounded-3xl overflow-hidden group">
-                        <div class="h-48 bg-gradient-to-br from-blue-900/50 to-teal-900/50 p-6 flex items-center justify-center relative">
-                            <i class="fas fa-project-diagram text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
-                            <div class="absolute bottom-4 left-6 flex gap-2">
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Scikit-Learn</span>
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">KNN</span>
-                                <span class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Pandas</span>
-                            </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-3">Stock Trend Classification (KNN)</h3>
-                            <p class="text-gray-400 mb-6 text-sm leading-relaxed">
-                                Implemented K-Nearest Neighbors (KNN) algorithm to classify market sentiments and stock performance. Analyzes features like volume, open-close difference, and daily returns to categorize potential buy/sell signals.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Certifications Section -->
-            <section data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center md:text-left">Professional <span class="text-gradient">Certifications</span></h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Cert 1: NISM -->
-                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-green-500">
-                        <div class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center text-2xl text-green-500 shrink-0">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">NISM Series VIII</h3>
-                            <p class="text-green-500 font-medium mb-3">Equity Derivatives Certification</p>
-                            <p class="text-sm text-gray-400 leading-relaxed">
-                                Validated expertise in the Indian equity derivatives market, covering trading strategies, clearing, settlement, and risk management frameworks.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Cert 2: CFA (In Progress) -->
-                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-yellow-500 relative overflow-hidden">
-                        <div class="absolute top-4 right-4 bg-yellow-500/20 text-yellow-600 text-xs px-2 py-1 rounded font-bold">IN PROGRESS</div>
-                        <div class="w-16 h-16 rounded-full bg-yellow-500/10 flex items-center justify-center text-2xl text-yellow-500 shrink-0">
-                            <i class="fas fa-book-reader"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">CFA Level 1</h3>
-                            <p class="text-yellow-500 font-medium mb-3">Chartered Financial Analyst</p>
-                            <p class="text-sm text-gray-400 leading-relaxed">
-                                Currently preparing for the CFA Level 1 exam. Focusing on ethical standards, quantitative methods, economics, and financial reporting.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Finance Knowledge Section -->
-            <section data-aos="fade-left">
-                <div class="glass-card rounded-3xl p-8 md:p-12 border-l-4 border-teal-500 relative overflow-hidden">
-                    <!-- Background accent -->
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
-
-                    <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                                <i class="fas fa-chart-bar text-teal-400"></i> Financial Markets
-                            </h2>
-                            <p class="text-gray-300 mb-6 leading-relaxed">
-                                Beyond coding, I possess deep theoretical and practical knowledge of financial instruments. My expertise lies in derivatives, specifically crafting strategies that hedge risk while maximizing returns.
-                            </p>
-                            
-                            <div class="space-y-4">
-                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400"><i class="fas fa-balance-scale"></i></div>
-                                    <div>
-                                        <h4 class="font-bold">Options Trading</h4>
-                                        <p class="text-xs text-gray-400">Greeks (Delta, Gamma, Theta), Spreads, Straddles</p>
+                        <div class="grid lg:grid-cols-5 gap-0">
+                            <div
+                                class="lg:col-span-2 h-64 lg:h-auto bg-gradient-to-br from-indigo-900/50 to-purple-900/50 p-8 flex flex-col justify-center relative">
+                                <i
+                                    class="fas fa-project-diagram text-6xl text-white/10 absolute top-8 right-8 group-hover:scale-110 transition-transform duration-500"></i>
+                                <div class="relative z-10">
+                                    <h3 class="text-3xl font-bold mb-3 text-white">AI Time-Series Regime Detection
+                                        System</h3>
+                                    <div class="flex flex-wrap gap-2 mt-4">
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Python</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">XGBoost</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">HMM</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">KMeans</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Streamlit</span>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400"><i class="fas fa-file-contract"></i></div>
-                                    <div>
-                                        <h4 class="font-bold">Derivatives & Futures</h4>
-                                        <p class="text-xs text-gray-400">Hedging strategies, Margin trading, Settlement</p>
+                            </div>
+                            <div class="lg:col-span-3 p-8">
+                                <p class="text-gray-300 mb-6 leading-relaxed">
+                                    Built a <strong>production-grade system</strong> using Hidden Markov Models (HMM) +
+                                    KMeans to detect regimes in high-dimensional time-series data. Developed XGBoost
+                                    models to predict regime transitions with <strong>65–75% accuracy</strong>, enabling
+                                    dynamic resource allocation and proactive risk-mitigation strategies.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                                        <span>Processed <strong class="text-white">17+ years</strong> of large-scale
+                                            datasets</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                                        <span><strong class="text-white">56% improvement</strong> in risk-adjusted
+                                            performance metrics</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                                        <span>Deployed with Streamlit for <strong class="text-white">live
+                                                monitoring</strong>, risk heatmaps, and rolling analytics</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                                        <span>Modular, time-series-aware ML pipeline with lagged features to eliminate
+                                            look-ahead bias</span>
+                                    </li>
+                                </ul>
+                                <div class="flex gap-4 items-center">
+                                    <div class="px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-lg">
+                                        <p class="text-xs text-gray-400">Accuracy</p>
+                                        <p class="text-2xl font-bold text-indigo-400">65–75%</p>
+                                    </div>
+                                    <div class="px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-lg">
+                                        <p class="text-xs text-gray-400">Performance Gain</p>
+                                        <p class="text-2xl font-bold text-green-400">+56%</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Visual Representation of a "Terminal" (Always Dark) -->
-                        <div class="bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-xs shadow-2xl">
-                            <div class="flex justify-between text-gray-500 mb-2 border-b border-white/10 pb-2">
-                                <span>INSTRUMENT</span>
-                                <span>LAST</span>
-                                <span>CHG</span>
+                    <!-- Project 2: Retail Demand Forecasting -->
+                    <div class="glass-card rounded-3xl overflow-hidden group">
+                        <div class="grid lg:grid-cols-5 gap-0">
+                            <div
+                                class="lg:col-span-2 h-64 lg:h-auto bg-gradient-to-br from-teal-900/50 to-blue-900/50 p-8 flex flex-col justify-center relative">
+                                <i
+                                    class="fas fa-boxes text-6xl text-white/10 absolute top-8 right-8 group-hover:scale-110 transition-transform duration-500"></i>
+                                <div class="relative z-10">
+                                    <h3 class="text-3xl font-bold mb-3 text-white">Retail Demand Forecasting & Inventory
+                                        Optimization</h3>
+                                    <div class="flex flex-wrap gap-2 mt-4">
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Python</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Prophet</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Airflow</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">Postgres</span>
+                                        <span
+                                            class="px-3 py-1 bg-black/50 backdrop-blur rounded-full text-xs font-mono border border-white/10 text-white">XGBoost</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex justify-between text-white py-1">
-                                <span class="text-green-400">NIFTY 50 CE</span>
-                                <span>22,450.00</span>
-                                <span class="text-green-400">+1.2%</span>
-                            </div>
-                            <div class="flex justify-between text-white py-1 bg-white/5">
-                                <span class="text-red-400">BANKNIFTY PE</span>
-                                <span>47,100.00</span>
-                                <span class="text-red-400">-0.8%</span>
-                            </div>
-                            <div class="flex justify-between text-white py-1">
-                                <span class="text-green-400">RELIANCE FUT</span>
-                                <span>2,980.50</span>
-                                <span class="text-green-400">+0.5%</span>
-                            </div>
-                            
-                            <!-- Simple SVG Graph -->
-                            <div class="mt-4 h-32 w-full bg-white/5 rounded border border-white/5 relative flex items-end px-2 pb-2 gap-1">
-                                <div class="w-1/6 h-[40%] bg-red-500/50 rounded-t"></div>
-                                <div class="w-1/6 h-[60%] bg-green-500/50 rounded-t"></div>
-                                <div class="w-1/6 h-[50%] bg-red-500/50 rounded-t"></div>
-                                <div class="w-1/6 h-[80%] bg-green-500/50 rounded-t"></div>
-                                <div class="w-1/6 h-[70%] bg-green-500/50 rounded-t"></div>
-                                <div class="w-1/6 h-[95%] bg-green-500/50 rounded-t animate-pulse"></div>
-                                <div class="absolute top-2 right-2 text-[10px] text-green-400 font-bold">LIVE</div>
+                            <div class="lg:col-span-3 p-8">
+                                <p class="text-gray-300 mb-6 leading-relaxed">
+                                    Built an <strong>end-to-end ML pipeline</strong> to forecast next-week sales at the
+                                    SKU level, significantly reducing overhead costs from overstock and stockouts.
+                                    Deployed hybrid forecasting (Prophet + XGBoost) integrated with a rule-based
+                                    recommendation engine.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-teal-400 mt-1"></i>
+                                        <span>Built <strong class="text-white">Apache Airflow ETL pipelines</strong> to
+                                            process large-scale retail datasets with seasonality and trend
+                                            detection</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-teal-400 mt-1"></i>
+                                        <span>Designed <strong class="text-white">full-stack dashboard</strong>
+                                            (Streamlit/React) for store managers to visualize stock-level alerts,
+                                            forecasted trends, and automated replenishment insights</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-teal-400 mt-1"></i>
+                                        <span>Validated system robustness via <strong class="text-white">backtesting
+                                                across multiple regions</strong> and diverse market environments</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-gray-400">
+                                        <i class="fas fa-check-circle text-teal-400 mt-1"></i>
+                                        <span>Generated high-precision demand forecasts with automated reorder
+                                            recommendations</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+        </div>
+        </section>
 
-            <!-- DSA Glimpse Section -->
-            <section data-aos="zoom-in">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold">Algorithms & <span class="text-indigo-400">Data Structures</span></h2>
+        <!-- Education Section -->
+        <section data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center md:text-left">Education & <span
+                    class="text-gradient">Background</span></h2>
+
+            <div class="glass-card p-8 md:p-10 rounded-2xl border-l-4 border-indigo-500 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -mr-20 -mt-20 transition-all group-hover:bg-indigo-500/15">
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300">
-                        <i class="fas fa-sitemap text-3xl text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Graph Theory</h3>
-                        <p class="text-gray-400 text-sm">BFS, DFS, Dijkstra, Minimum Spanning Trees. Optimized for network analysis.</p>
-                    </div>
-                    
-                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300" style="border-color: #ec4899;">
-                        <i class="fas fa-cube text-3xl text-pink-400 mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Programming</h3>
-                        <p class="text-gray-400 text-sm">Optimization problems, Knapsack, Matrix Chain Multiplication.</p>
+
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Indian Institute of Technology, Patna</h3>
+                            <h4 class="text-xl font-semibold text-indigo-400 mt-1">Bachelor of Science in Computer
+                                Science & Data Analytics</h4>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <span
+                                class="inline-block px-4 py-2 bg-indigo-500/20 border border-indigo-500/40 rounded-lg text-sm font-medium text-indigo-300">
+                                <i class="far fa-calendar-alt mr-2"></i>Expected 2029
+                            </span>
+                        </div>
                     </div>
 
-                    <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300" style="border-color: #14b8a6;">
-                        <i class="fas fa-tree text-3xl text-teal-400 mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Trees & Heaps</h3>
-                        <p class="text-gray-400 text-sm">Binary Search Trees, AVL, Segment Trees, Priority Queues.</p>
+                    <div class="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+                        <h5 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-4">Relevant Coursework
+                        </h5>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Statistics</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Time Series Analysis</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Linear Algebra</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Machine Learning</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Data Structures</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fas fa-circle text-xs text-indigo-400"></i>
+                                <span>Financial Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg">
+                        <h5 class="text-sm font-bold text-purple-300 mb-2">Research Interests</h5>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Machine learning • Financial markets • Forecasting systems • Risk modeling • Supply-chain
+                            intelligence
+                        </p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Experience Section -->
-            <section class="mb-24" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-10 border-l-4 border-blue-500 pl-4">Experience</h2>
-                
-                <div class="glass-card p-8 md:p-10 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16 transition-all group-hover:bg-blue-600/20"></div>
-                    
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-blue-400">Primary School Teacher</h3>
-                            <h4 class="text-xl font-semibold mb-2">Gautam Bright School</h4>
-                            <p class="text-sm text-gray-400 mb-4"><i class="far fa-calendar-alt mr-2"></i>July 2023 - March 2025 • Patna, Bihar, India</p>
-                            
-                            <ul class="list-disc list-inside space-y-2 text-gray-300 marker:text-blue-500">
-                                <li>Taught core subjects to primary-level students, focusing on conceptual clarity and engagement.</li>
-                                <li>Developed lesson plans, managed classrooms, and conducted parent-teacher meetings.</li>
-                                <li>Built strong communication and leadership skills through this role.</li>
-                            </ul>
+        <!-- Certifications Section -->
+
+        <section data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center md:text-left">Professional <span
+                    class="text-gradient">Certifications</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Cert 1: NISM -->
+                <div class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-green-500">
+                    <div
+                        class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center text-2xl text-green-500 shrink-0">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">NISM Series VIII</h3>
+                        <p class="text-green-500 font-medium mb-3">Equity Derivatives Certification</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Validated expertise in the Indian equity derivatives market, covering trading
+                            strategies, clearing, settlement, and risk management frameworks.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cert 2: CFA (In Progress) -->
+                <div
+                    class="glass-card p-8 rounded-2xl flex items-start gap-6 border-t-4 border-yellow-500 relative overflow-hidden">
+                    <div
+                        class="absolute top-4 right-4 bg-yellow-500/20 text-yellow-600 text-xs px-2 py-1 rounded font-bold">
+                        IN PROGRESS</div>
+                    <div
+                        class="w-16 h-16 rounded-full bg-yellow-500/10 flex items-center justify-center text-2xl text-yellow-500 shrink-0">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">CFA Level 1</h3>
+                        <p class="text-yellow-500 font-medium mb-3">Chartered Financial Analyst</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Currently preparing for the CFA Level 1 exam. Focusing on ethical standards,
+                            quantitative methods, economics, and financial reporting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finance Knowledge Section -->
+        <section data-aos="fade-left">
+            <div class="glass-card rounded-3xl p-8 md:p-12 border-l-4 border-teal-500 relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -mr-20 -mt-20">
+                </div>
+
+                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                            <i class="fas fa-chart-bar text-teal-400"></i> Financial Markets
+                        </h2>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Beyond coding, I possess deep theoretical and practical knowledge of financial
+                            instruments. My expertise lies in derivatives, specifically crafting strategies that
+                            hedge risk while maximizing returns.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div
+                                class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Options Trading</h4>
+                                    <p class="text-xs text-gray-400">Greeks (Delta, Gamma, Theta), Spreads,
+                                        Straddles</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Derivatives & Futures</h4>
+                                    <p class="text-xs text-gray-400">Hedging strategies, Margin trading, Settlement
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Representation of a "Terminal" (Always Dark) -->
+                    <div class="bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-xs shadow-2xl">
+                        <div class="flex justify-between text-gray-500 mb-2 border-b border-white/10 pb-2">
+                            <span>INSTRUMENT</span>
+                            <span>LAST</span>
+                            <span>CHG</span>
+                        </div>
+                        <div class="flex justify-between text-white py-1">
+                            <span class="text-green-400">NIFTY 50 CE</span>
+                            <span>22,450.00</span>
+                            <span class="text-green-400">+1.2%</span>
+                        </div>
+                        <div class="flex justify-between text-white py-1 bg-white/5">
+                            <span class="text-red-400">BANKNIFTY PE</span>
+                            <span>47,100.00</span>
+                            <span class="text-red-400">-0.8%</span>
+                        </div>
+                        <div class="flex justify-between text-white py-1">
+                            <span class="text-green-400">RELIANCE FUT</span>
+                            <span>2,980.50</span>
+                            <span class="text-green-400">+0.5%</span>
+                        </div>
+
+                        <!-- Simple SVG Graph -->
+                        <div
+                            class="mt-4 h-32 w-full bg-white/5 rounded border border-white/5 relative flex items-end px-2 pb-2 gap-1">
+                            <div class="w-1/6 h-[40%] bg-red-500/50 rounded-t"></div>
+                            <div class="w-1/6 h-[60%] bg-green-500/50 rounded-t"></div>
+                            <div class="w-1/6 h-[50%] bg-red-500/50 rounded-t"></div>
+                            <div class="w-1/6 h-[80%] bg-green-500/50 rounded-t"></div>
+                            <div class="w-1/6 h-[70%] bg-green-500/50 rounded-t"></div>
+                            <div class="w-1/6 h-[95%] bg-green-500/50 rounded-t animate-pulse"></div>
+                            <div class="absolute top-2 right-2 text-[10px] text-green-400 font-bold">LIVE</div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Future Planning Section -->
-            <section data-aos="fade-up" class="mb-24">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Future <span class="text-gradient">Roadmap</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">
-                        "Bridging the gap between coding and markets, combining logic, curiosity, and data to drive performance."
+        <!-- DSA Glimpse Section -->
+        <section data-aos="zoom-in">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold">Algorithms & <span class="text-indigo-400">Data
+                        Structures</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-sitemap text-3xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Graph Theory</h3>
+                    <p class="text-gray-400 text-sm">BFS, DFS, Dijkstra, Minimum Spanning Trees. Optimized for
+                        network analysis.</p>
+                </div>
+
+                <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+                    style="border-color: #ec4899;">
+                    <i class="fas fa-cube text-3xl text-pink-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Dynamic Programming</h3>
+                    <p class="text-gray-400 text-sm">Optimization problems, Knapsack, Matrix Chain Multiplication.
                     </p>
                 </div>
 
-                <div class="relative max-w-4xl mx-auto">
-                    <!-- Vertical Line -->
-                    <div class="hidden md:block timeline-line"></div>
+                <div class="code-block p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+                    style="border-color: #14b8a6;">
+                    <i class="fas fa-tree text-3xl text-teal-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Trees & Heaps</h3>
+                    <p class="text-gray-400 text-sm">Binary Search Trees, AVL, Segment Trees, Priority Queues.</p>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Step 1 -->
-                    <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
-                        <div class="text-right hidden md:block" data-aos="fade-right">
-                            <h3 class="text-2xl font-bold text-indigo-400">Current Focus</h3>
-                            <p class="text-gray-400 mt-2">Mastering Python, Financial Modeling, and Algorithmic Trading foundations.</p>
-                        </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-indigo-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
-                        <div class="md:pl-12" data-aos="fade-left">
-                            <div class="glass-card p-6 rounded-xl">
-                                <i class="fas fa-laptop-code text-2xl text-indigo-400 mb-2"></i>
-                                <h4 class="font-bold text-lg">Skill Acquisition</h4>
-                                <p class="text-sm text-gray-400">Building reliable, backtested trading strategies and strengthening Data Analytics core.</p>
-                            </div>
-                        </div>
+        <!-- Experience Section -->
+        <section class="mb-24" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 border-l-4 border-blue-500 pl-4">Experience</h2>
+
+            <div class="glass-card p-8 md:p-10 rounded-2xl relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16 transition-all group-hover:bg-blue-600/20">
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-blue-400">Primary School Teacher</h3>
+                        <h4 class="text-xl font-semibold mb-2">Gautam Bright School</h4>
+                        <p class="text-sm text-gray-400 mb-4"><i class="far fa-calendar-alt mr-2"></i>July 2023 -
+                            March 2025 • Patna, Bihar, India</p>
+
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 marker:text-blue-500">
+                            <li>Taught core subjects to primary-level students, focusing on conceptual clarity and
+                                engagement.</li>
+                            <li>Developed lesson plans, managed classrooms, and conducted parent-teacher meetings.
+                            </li>
+                            <li>Built strong communication and leadership skills through this role.</li>
+                        </ul>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Step 2 -->
-                    <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
-                        <div class="md:text-right order-2 md:order-1 md:pr-12" data-aos="fade-right">
-                            <div class="glass-card p-6 rounded-xl border border-yellow-500/30">
-                                <i class="fas fa-award text-2xl text-yellow-400 mb-2"></i>
-                                <h4 class="font-bold text-lg">Certifications</h4>
-                                <p class="text-sm text-gray-400">Completion of CFA Level 1, NSE Academy certifications, and advanced NISM modules.</p>
-                            </div>
-                        </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-yellow-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
-                        <div class="order-1 md:order-2 hidden md:block" data-aos="fade-left">
-                            <h3 class="text-2xl font-bold text-yellow-400">Professional Validation</h3>
-                            <p class="text-gray-400 mt-2">Gaining recognized credentials to solidify financial domain knowledge.</p>
-                        </div>
+        <!-- Future Planning Section -->
+        <section data-aos="fade-up" class="mb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Future <span class="text-gradient">Roadmap</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    "Bridging the gap between coding and markets, combining logic, curiosity, and data to drive
+                    performance."
+                </p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="hidden md:block timeline-line"></div>
+
+                <!-- Step 1 -->
+                <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
+                    <div class="text-right hidden md:block" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-indigo-400">Current Focus</h3>
+                        <p class="text-gray-400 mt-2">Mastering Python, Financial Modeling, and Algorithmic Trading
+                            foundations.</p>
                     </div>
-
-                    <!-- Step 3 -->
-                    <div class="relative grid md:grid-cols-2 gap-8 items-center">
-                        <div class="text-right hidden md:block" data-aos="fade-right">
-                            <h3 class="text-2xl font-bold text-pink-400">Ultimate Goal</h3>
-                            <p class="text-gray-400 mt-2">A role that demands both high-level coding and deep market insight.</p>
-                        </div>
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-black z-10 hidden md:block animate-pulse"></div>
-                        <div class="md:pl-12" data-aos="fade-left">
-                            <div class="glass-card p-6 rounded-xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-pink-500/50">
-                                <i class="fas fa-crosshairs text-2xl text-pink-400 mb-2"></i>
-                                <h4 class="font-bold text-lg">Quantitative Analyst</h4>
-                                <p class="text-sm text-gray-400">Becoming a Quant or Research Analyst. Leveraging data to solve complex financial problems.</p>
-                            </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-indigo-500 rounded-full border-4 border-black z-10 hidden md:block">
+                    </div>
+                    <div class="md:pl-12" data-aos="fade-left">
+                        <div class="glass-card p-6 rounded-xl">
+                            <i class="fas fa-laptop-code text-2xl text-indigo-400 mb-2"></i>
+                            <h4 class="font-bold text-lg">Skill Acquisition</h4>
+                            <p class="text-sm text-gray-400">Building reliable, backtested trading strategies and
+                                strengthening Data Analytics core.</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- LeetCode Solutions Gallery -->
-            <section id="leetcode-gallery" class="mb-24" data-aos="fade-up">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">LeetCode <span class="text-gradient">Solutions Archive</span></h2>
-                    <p class="text-gray-400">A visual log of my algorithmic problem-solving journey.</p>
-                    <div class="mt-4 text-sm text-gray-500">
+                <!-- Step 2 -->
+                <div class="relative grid md:grid-cols-2 gap-8 mb-16 items-center">
+                    <div class="md:text-right order-2 md:order-1 md:pr-12" data-aos="fade-right">
+                        <div class="glass-card p-6 rounded-xl border border-yellow-500/30">
+                            <i class="fas fa-award text-2xl text-yellow-400 mb-2"></i>
+                            <h4 class="font-bold text-lg">Certifications</h4>
+                            <p class="text-sm text-gray-400">Completion of CFA Level 1, NSE Academy certifications,
+                                and advanced NISM modules.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-yellow-500 rounded-full border-4 border-black z-10 hidden md:block">
+                    </div>
+                    <div class="order-1 md:order-2 hidden md:block" data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-yellow-400">Professional Validation</h3>
+                        <p class="text-gray-400 mt-2">Gaining recognized credentials to solidify financial domain
+                            knowledge.</p>
                     </div>
                 </div>
 
-                <!-- Dynamic Grid Container -->
-                <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <!-- Images will be injected here by JavaScript -->
+                <!-- Step 3 -->
+                <div class="relative grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-right hidden md:block" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-pink-400">Ultimate Goal</h3>
+                        <p class="text-gray-400 mt-2">A role that demands both high-level coding and deep market
+                            insight.</p>
+                    </div>
+                    <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-black z-10 hidden md:block animate-pulse">
+                    </div>
+                    <div class="md:pl-12" data-aos="fade-left">
+                        <div
+                            class="glass-card p-6 rounded-xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-pink-500/50">
+                            <i class="fas fa-crosshairs text-2xl text-pink-400 mb-2"></i>
+                            <h4 class="font-bold text-lg">Quantitative Analyst</h4>
+                            <p class="text-sm text-gray-400">Becoming a Quant or Research Analyst. Leveraging data
+                                to solve complex financial problems.</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- View More Button -->
-                <div class="text-center mt-8">
-                    <button id="load-more-btn" class="px-8 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all backdrop-blur-sm hidden">
-                        View More Solutions <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
+        <!-- LeetCode Solutions Gallery -->
+        <section id="leetcode-gallery" class="mb-24" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">LeetCode <span class="text-gradient">Solutions
+                        Archive</span></h2>
+                <p class="text-gray-400">A visual log of my algorithmic problem-solving journey.</p>
+                <div class="mt-4 text-sm text-gray-500">
                 </div>
-            </section>
-            
+            </div>
+
+            <!-- Dynamic Grid Container -->
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Images will be injected here by JavaScript -->
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center mt-8">
+                <button id="load-more-btn"
+                    class="px-8 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all backdrop-blur-sm hidden">
+                    View More Solutions <i class="fas fa-chevron-down ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/50 backdrop-blur-lg mt-12 py-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold">Aditya</h2>
+                <p class="text-sm text-gray-500">Quant | Finance | Data</p>
+            </div>
+
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/in/aditya-405437360" target="_blank"
+                    class="text-gray-400 hover:text-indigo-500 transition-colors"><i
+                        class="fab fa-linkedin text-2xl"></i></a>
+                <a href="https://github.com/sinhaaditya9241" target="_blank"
+                    class="text-gray-400 hover:text-indigo-500 transition-colors"><i
+                        class="fab fa-github text-2xl"></i></a>
+                <a href="mailto:kraditya9241@gmail.com" class="text-gray-400 hover:text-indigo-500 transition-colors"><i
+                        class="fas fa-envelope text-2xl"></i></a>
+            </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="border-t border-white/10 bg-black/50 backdrop-blur-lg mt-12 py-12">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-bold">Aditya</h2>
-                    <p class="text-sm text-gray-500">Quant | Finance | Data</p>
-                </div>
-                
-                <div class="flex gap-6">
-                    <a href="https://www.linkedin.com/in/aditya-405437360" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
-                    <a href="https://github.com/sinhaaditya9241" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-github text-2xl"></i></a>
-                    <a href="mailto:kraditya9241@gmail.com" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
-                </div>
-            </div>
-            <div class="text-center text-gray-600 text-xs mt-8">
-                &copy; 2025 Aditya. Designed with Fusion Aesthetics.
-            </div>
-        </footer>
+        <div class="text-center text-gray-600 text-xs mt-8">
+            &copy; 2025 Aditya. Designed with Fusion Aesthetics.
+        </div>
+    </footer>
 
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <script>
         // Initialize AOS
         AOS.init({
@@ -700,7 +1152,7 @@
         // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
-        
+
         // Delegated event listener for dynamically added images
         document.getElementById('gallery-grid').addEventListener('click', (e) => {
             if (e.target.classList.contains('gallery-img')) {
@@ -721,7 +1173,7 @@
         toggleBtn.addEventListener('click', () => {
             body.classList.toggle('light-mode');
             isLightMode = body.classList.contains('light-mode');
-            
+
             // Update Icon
             if (isLightMode) {
                 themeIcon.classList.remove('fa-sun');
@@ -758,12 +1210,12 @@
             for (let i = 1; i <= maxImagesToCheck; i++) {
                 const imgContainer = document.createElement('div');
                 imgContainer.className = 'glass-card p-2 rounded-xl group relative overflow-hidden h-48 hidden-item'; // Hidden by default
-                
+
                 const img = document.createElement('img');
                 img.src = `./leetcode_screenshots/solution${i}.png`; // EXPECTS: solution1.png, solution2.png, etc.
                 img.alt = `LeetCode Solution ${i}`;
                 img.className = 'gallery-img w-full h-full object-cover rounded-lg';
-                
+
                 // Add overlay
                 const overlay = document.createElement('div');
                 overlay.className = 'absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none';
@@ -774,13 +1226,13 @@
                 galleryGrid.appendChild(imgContainer);
 
                 // Check if image exists
-                img.onload = function() {
+                img.onload = function () {
                     // Valid image
                     validImages.push(imgContainer);
                     updateGalleryVisibility();
                 };
 
-                img.onerror = function() {
+                img.onerror = function () {
                     // Invalid image - remove from DOM so it doesn't take up space
                     imgContainer.remove();
                 };
@@ -791,7 +1243,7 @@
             // Sort valid images to ensure order (optional, as append order is usually preserved but async loading varies)
             // Note: Since we appended in order, validImages array might be out of order due to network speed.
             // But for local files, it's usually fast. To be safe, we just show what we have.
-            
+
             // Show the first batch if not already shown
             if (currentlyShown === 0 && validImages.length > 0) {
                 showNextBatch();
@@ -801,7 +1253,7 @@
 
         function showNextBatch() {
             const nextBatch = validImages.slice(currentlyShown, currentlyShown + itemsPerPage);
-            
+
             nextBatch.forEach(item => {
                 item.classList.remove('hidden-item');
                 // Add a small fade-in animation
@@ -820,16 +1272,18 @@
         }
 
         loadMoreBtn.addEventListener('click', showNextBatch);
-        
+
         // Start Gallery Init
         initGallery();
 
 
         // THREE.JS ANIMATION CODE
-        const initThreeJS = () => {
+
+
+        function initThreeJS() {
             const container = document.getElementById('canvas-container');
             const scene = new THREE.Scene();
-            
+
             // Camera setup
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.z = 30;
@@ -842,12 +1296,12 @@
 
             // Particles
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 450; 
+            const particlesCount = 450;
 
             const posArray = new Float32Array(particlesCount * 3);
 
-            for(let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 70; 
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 70;
             }
 
             particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
@@ -868,12 +1322,23 @@
             lineMaterialRef = new THREE.LineBasicMaterial({
                 color: 0x6366f1, // Indigo-500
                 transparent: true,
-                opacity: 0.08 
+                opacity: 0.08
             });
 
             const linesGeometry = new THREE.BufferGeometry();
             const linesMesh = new THREE.LineSegments(linesGeometry, lineMaterialRef);
             scene.add(linesMesh);
+
+            // --- ADDED: 3D MOVING ELEMENT (Wireframe Icosahedron) ---
+            const icoGeometry = new THREE.IcosahedronGeometry(10, 1);
+            const icoMaterial = new THREE.MeshBasicMaterial({
+                color: 0x6366f1,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const icoMesh = new THREE.Mesh(icoGeometry, icoMaterial);
+            scene.add(icoMesh);
 
             // Mouse Interaction
             let mouseX = 0;
@@ -900,15 +1365,22 @@
 
                 const elapsedTime = clock.getElapsedTime();
 
-                // Fluid rotation
+                // Fluid rotation for particles
                 particlesMesh.rotation.y = .05 * elapsedTime;
                 particlesMesh.rotation.x = .02 * elapsedTime;
                 linesMesh.rotation.y = .05 * elapsedTime;
                 linesMesh.rotation.x = .02 * elapsedTime;
 
-                // Mouse movement effect
+                // Mouse movement effect for particles
                 particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
                 particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+                // Rotate the Icosahedron
+                icoMesh.rotation.x += 0.002;
+                icoMesh.rotation.y += 0.002;
+
+                // Slight float effect
+                icoMesh.position.y = Math.sin(elapsedTime * 0.5) * 1;
 
                 // Update connecting lines dynamically
                 updateLines();
@@ -920,10 +1392,10 @@
             function updateLines() {
                 const positions = particlesMesh.geometry.attributes.position.array;
                 const linePositions = [];
-                
+
                 particlesMesh.updateMatrixWorld();
 
-                const connectDistance = 3.5; 
+                const connectDistance = 3.5;
 
                 // Optimization
                 for (let i = 0; i < 150; i++) {
@@ -936,7 +1408,7 @@
                         const y2 = positions[j * 3 + 1];
                         const z2 = positions[j * 3 + 2];
 
-                        const dist = Math.sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2);
+                        const dist = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2);
 
                         if (dist < connectDistance) {
                             linePositions.push(x1, y1, z1);
@@ -959,8 +1431,7 @@
             });
         };
 
-        window.onload = initThreeJS;
-
     </script>
 </body>
+
 </html>
