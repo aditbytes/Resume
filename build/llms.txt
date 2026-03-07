@@ -1,0 +1,109 @@
+# llms.txt — Aditya
+
+A machine-friendly overview of who I am, what I build, and where to find always-fresh information.
+
+Last-Updated: 2026-03-07
+Canonical: https://aditbytes.github.io/Resume/llms.txt
+Full version: https://aditbytes.github.io/Resume/llms-full.txt
+
+---
+
+## Quick context for LLMs
+
+- **Who**: Quant, Finance & Data | Computer Science & Data Analytics Student from Patna, India.
+- **Full context (recommended)**: https://aditbytes.github.io/Resume/llms-full.txt
+- **Machine-readable data**: https://aditbytes.github.io/Resume/profile.json
+
+
+---
+
+## Primary identity and socials
+
+- Name: Aditya
+
+- Location: Patna, India
+- Role: Quant, Finance & Data | Computer Science & Data Analytics Student
+- Email: mailto:kraditya9241@gmail.com
+- GitHub: https://github.com/sinhaaditya9241
+- LinkedIn: https://www.linkedin.com/in/aditya-405437360
+- X/Twitter: 
+- YouTube: 
+
+---
+
+## Education
+
+- Bachelor of Science in Computer Science & Data Analytics — Indian Institute of Technology Patna (Expected 2029)
+
+---
+
+## Short bio
+
+Hey! I'm Aditya, a Computer Science & Data Analytics student at IIT Patna focused on machine learning and quantitative finance.
+
+I am pursuing a Bachelor of Science in Computer Science & Data Analytics at IIT Patna (Expected 2029), with coursework in Statistics, Time Series Analysis, Machine Learning, and Financial Modeling.
+
+I build end-to-end predictive systems for finance and supply chains. Run projects to explore my featured work.
+
+I maintain a practical algorithm and DSA practice workflow through my LeetCode solutions archive.
+
+Currently focused on Python, financial modeling, and algorithmic trading foundations while improving production-ready ML deployment skills.
+
+My toolkit includes Pandas, NumPy, Scikit-Learn, XGBoost, TensorFlow, Prophet, SQL, Postgres, Airflow, and Streamlit. Run skills for details.
+
+Previously worked as a Primary School Teacher at Gautam Bright School (July 2023 - March 2025), where I developed strong communication and leadership skills.
+
+I enjoy bridging coding and markets by turning noisy, large datasets into deployable decision systems.
+
+If you're working on data-driven finance or forecasting systems, feel free to connect.
+
+---
+
+## Achievements
+
+- Built AI Time-Series Regime Detection System — Achieved 65-75% regime transition prediction accuracy
+- Improved risk-adjusted performance — Delivered +56% gain in strategy performance metrics
+- Processed 17+ years of historical datasets — Developed production-style, time-series-aware ML pipeline
+- Built retail demand forecasting and inventory optimization pipeline — Implemented Airflow ETL + Prophet/XGBoost hybrid forecasting
+- NISM Series VIII — Equity Derivatives Certification (National Institute of Securities Markets)
+- CFA Program — Level I Candidate (Chartered Financial Analyst Institute)
+
+---
+
+## Press & media appearances
+
+- No press entries listed yet
+
+---
+
+## Projects (top 3)
+
+For the complete list with all 3 projects, see https://aditbytes.github.io/Resume/llms-full.txt
+
+- AI Time-Series Regime Detection System — Production-grade regime detection for high-dimensional time-series data using HMM + KMeans and XGBoost transition prediction.
+
+Key outcomes:
+- 65-75% transition prediction accuracy
+- 17+ years of data processed
+- +56% improvement in risk-adjusted performance
+- Streamlit deployment for live monitoring and risk heatmaps
+
+- Retail Demand Forecasting & Inventory Optimization — End-to-end SKU-level next-week demand forecasting pipeline combining Prophet + XGBoost with rule-based reorder recommendations.
+
+Highlights:
+- Airflow ETL for retail data pipelines
+- Postgres-backed analytical workflows
+- Backtesting across multiple regions and market conditions
+- Dashboard experience using Streamlit/React
+
+- LeetCode Solutions Archive — A structured, ongoing archive of algorithmic problem solving with focus on graph algorithms, dynamic programming, trees, and heaps.
+  - GitHub: https://github.com/sinhaaditya9241
+
+---
+
+## Contact
+
+- Email: kraditya9241@gmail.com
+- Portfolio: https://aditbytes.github.io/Resume/
+- LinkedIn: https://www.linkedin.com/in/aditya-405437360
+- GitHub: https://github.com/sinhaaditya9241

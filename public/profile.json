@@ -1,0 +1,189 @@
+{
+  "name": "Aditya",
+  "title": "Quant, Finance & Data | Computer Science & Data Analytics Student",
+  "location": "Patna, India",
+  "email": "kraditya9241@gmail.com",
+  "website": "https://aditbytes.github.io/Resume",
+  "github": "https://github.com/sinhaaditya9241",
+  "linkedin": "https://www.linkedin.com/in/aditya-405437360",
+  "blog": "",
+  "youtube": "",
+  "current_role": {
+    "position": "Previously worked as a Primary School Teacher at Gautam Bright School (July 2023 - March 2025), where I developed strong communication and leadership skills.",
+    "education": "I am pursuing a Bachelor of Science in Computer Science & Data Analytics at IIT Patna (Expected 2029), with coursework in Statistics, Time Series Analysis, Machine Learning, and Financial Modeling."
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science & Data Analytics",
+      "institution": "Indian Institute of Technology Patna",
+      "status": "Expected 2029"
+    }
+  ],
+  "skills": {
+    "Languages": [
+      {
+        "name": "Python",
+        "desc": "Core language for ML, analytics, and automation"
+      },
+      {
+        "name": "SQL",
+        "desc": "Data querying, transformation, and reporting"
+      },
+      {
+        "name": "JavaScript",
+        "desc": "Frontend and utility scripting"
+      },
+      {
+        "name": "HTML",
+        "desc": "Web structure"
+      },
+      {
+        "name": "CSS",
+        "desc": "Web styling and layout"
+      }
+    ],
+    "ML & Forecasting": [
+      {
+        "name": "Pandas",
+        "desc": "Data wrangling and time-series processing"
+      },
+      {
+        "name": "NumPy",
+        "desc": "Numerical computing and vectorized operations"
+      },
+      {
+        "name": "Scikit-Learn",
+        "desc": "Classical machine learning pipelines"
+      },
+      {
+        "name": "XGBoost",
+        "desc": "Gradient boosting for predictive modeling"
+      },
+      {
+        "name": "TensorFlow",
+        "desc": "Deep learning workflows"
+      },
+      {
+        "name": "Keras",
+        "desc": "Neural network API for deep learning"
+      },
+      {
+        "name": "Prophet",
+        "desc": "Forecasting with trend and seasonality"
+      },
+      {
+        "name": "HMM",
+        "desc": "Regime/state detection in sequential data"
+      },
+      {
+        "name": "KMeans",
+        "desc": "Clustering for segmentation and structure"
+      }
+    ],
+    "Data Engineering": [
+      {
+        "name": "Postgres",
+        "desc": "Relational data storage and analytics"
+      },
+      {
+        "name": "Apache Airflow",
+        "desc": "ETL orchestration and scheduled pipelines"
+      },
+      {
+        "name": "ETL Pipelines",
+        "desc": "Data extraction, cleaning, and loading"
+      },
+      {
+        "name": "Git",
+        "desc": "Version control and collaboration"
+      }
+    ],
+    "Visualization & Apps": [
+      {
+        "name": "Streamlit",
+        "desc": "Rapid analytical dashboards"
+      },
+      {
+        "name": "Plotly",
+        "desc": "Interactive data visualizations"
+      },
+      {
+        "name": "Matplotlib",
+        "desc": "Static data visualization and charting"
+      },
+      {
+        "name": "React",
+        "desc": "UI development for analytics interfaces"
+      }
+    ],
+    "Finance & Risk": [
+      {
+        "name": "Sharpe Ratio",
+        "desc": "Risk-adjusted performance measurement"
+      },
+      {
+        "name": "Drawdown",
+        "desc": "Portfolio downside analysis"
+      },
+      {
+        "name": "Risk Metrics",
+        "desc": "Monitoring and evaluating exposure"
+      },
+      {
+        "name": "Financial Modeling",
+        "desc": "Data-driven market decision frameworks"
+      }
+    ]
+  },
+  "featured_projects": [
+    {
+      "name": "AI Time-Series Regime Detection System",
+      "status": "Active",
+      "description": "Production-grade regime detection for high-dimensional time-series data using HMM + KMeans and XGBoost transition prediction.\n\nKey outcomes:\n- 65-75% transition prediction accuracy\n- 17+ years of data processed\n- +56% improvement in risk-adjusted performance\n- Streamlit deployment for live monitoring and risk heatmaps"
+    },
+    {
+      "name": "Retail Demand Forecasting & Inventory Optimization",
+      "status": "Active",
+      "description": "End-to-end SKU-level next-week demand forecasting pipeline combining Prophet + XGBoost with rule-based reorder recommendations.\n\nHighlights:\n- Airflow ETL for retail data pipelines\n- Postgres-backed analytical workflows\n- Backtesting across multiple regions and market conditions\n- Dashboard experience using Streamlit/React"
+    },
+    {
+      "name": "LeetCode Solutions Archive",
+      "status": "Active",
+      "description": "A structured, ongoing archive of algorithmic problem solving with focus on graph algorithms, dynamic programming, trees, and heaps.",
+      "github": "https://github.com/sinhaaditya9241"
+    }
+  ],
+  "achievements": [
+    "Built AI Time-Series Regime Detection System — Achieved 65-75% regime transition prediction accuracy",
+    "Improved risk-adjusted performance — Delivered +56% gain in strategy performance metrics",
+    "Processed 17+ years of historical datasets — Developed production-style, time-series-aware ML pipeline",
+    "Built retail demand forecasting and inventory optimization pipeline — Implemented Airflow ETL + Prophet/XGBoost hybrid forecasting",
+    "NISM Series VIII — Equity Derivatives Certification (National Institute of Securities Markets)",
+    "CFA Program — Level I Candidate (Chartered Financial Analyst Institute)"
+  ],
+  "media_appearances": [],
+  "interests": [
+    "Applied Machine Learning",
+    "Market Microstructure",
+    "Systematic Forecasting",
+    "Risk Management",
+    "Supply Chain Intelligence",
+    "Scalable Data Systems"
+  ],
+  "portfolio_features": {
+    "type": "Interactive Terminal",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "features": [
+      "Terminal command interface",
+      "Projects showcase",
+      "Skills explorer",
+      "Utility tools and mini games",
+      "Responsive design"
+    ]
+  },
+  "last_updated": "2026-03-07"
+}

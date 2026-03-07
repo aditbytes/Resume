@@ -1,0 +1,99 @@
+{
+  "name": "Aditya",
+  "title": "Quant, Finance & Data | Computer Science & Data Analytics Student",
+  "website": "https://aditbytes.github.io/Resume",
+  "location": "Patna, India",
+  "email": "kraditya9241@gmail.com",
+  "resumeUrl": "/Resume_aditya.pdf",
+  "socials": {
+    "github": "https://github.com/sinhaaditya9241",
+    "linkedin": "https://www.linkedin.com/in/aditya-405437360",
+    "twitter": "",
+    "youtube": "",
+    "blog": ""
+  },
+  "bio": {
+    "intro": "Hey! I'm Aditya, a Computer Science & Data Analytics student at IIT Patna focused on machine learning and quantitative finance.",
+    "education": "I am pursuing a Bachelor of Science in Computer Science & Data Analytics at IIT Patna (Expected 2029), with coursework in Statistics, Time Series Analysis, Machine Learning, and Financial Modeling.",
+    "projects_highlight": "I build end-to-end predictive systems for finance and supply chains. Run <span class=\"command-link\" data-command=\"projects\" style=\"color: #5abb9a; cursor: pointer; text-decoration: underline;\">projects</span> to explore my featured work.",
+    "blog_highlight": "I maintain a practical algorithm and DSA practice workflow through my LeetCode solutions archive.",
+    "current_work": "Currently focused on Python, financial modeling, and algorithmic trading foundations while improving production-ready ML deployment skills.",
+    "skills_highlight": "My toolkit includes Pandas, NumPy, Scikit-Learn, XGBoost, TensorFlow, Prophet, SQL, Postgres, Airflow, and Streamlit. Run <span class=\"command-link\" data-command=\"skills\" style=\"color: #5abb9a; cursor: pointer; text-decoration: underline;\">skills</span> for details.",
+    "history": "Previously worked as a Primary School Teacher at Gautam Bright School (July 2023 - March 2025), where I developed strong communication and leadership skills.",
+    "fun_fact": "I enjoy bridging coding and markets by turning noisy, large datasets into deployable decision systems.",
+    "outro": "If you're working on data-driven finance or forecasting systems, feel free to connect."
+  },
+  "skills": {
+    "Languages": [
+      { "name": "Python", "desc": "Core language for ML, analytics, and automation" },
+      { "name": "SQL", "desc": "Data querying, transformation, and reporting" },
+      { "name": "JavaScript", "desc": "Frontend and utility scripting" },
+      { "name": "HTML", "desc": "Web structure" },
+      { "name": "CSS", "desc": "Web styling and layout" }
+    ],
+    "ML & Forecasting": [
+      { "name": "Pandas", "desc": "Data wrangling and time-series processing" },
+      { "name": "NumPy", "desc": "Numerical computing and vectorized operations" },
+      { "name": "Scikit-Learn", "desc": "Classical machine learning pipelines" },
+      { "name": "XGBoost", "desc": "Gradient boosting for predictive modeling" },
+      { "name": "TensorFlow", "desc": "Deep learning workflows" },
+      { "name": "Keras", "desc": "Neural network API for deep learning" },
+      { "name": "Prophet", "desc": "Forecasting with trend and seasonality" },
+      { "name": "HMM", "desc": "Regime/state detection in sequential data" },
+      { "name": "KMeans", "desc": "Clustering for segmentation and structure" }
+    ],
+    "Data Engineering": [
+      { "name": "Postgres", "desc": "Relational data storage and analytics" },
+      { "name": "Apache Airflow", "desc": "ETL orchestration and scheduled pipelines" },
+      { "name": "ETL Pipelines", "desc": "Data extraction, cleaning, and loading" },
+      { "name": "Git", "desc": "Version control and collaboration" }
+    ],
+    "Visualization & Apps": [
+      { "name": "Streamlit", "desc": "Rapid analytical dashboards" },
+      { "name": "Plotly", "desc": "Interactive data visualizations" },
+      { "name": "Matplotlib", "desc": "Static data visualization and charting" },
+      { "name": "React", "desc": "UI development for analytics interfaces" }
+    ],
+    "Finance & Risk": [
+      { "name": "Sharpe Ratio", "desc": "Risk-adjusted performance measurement" },
+      { "name": "Drawdown", "desc": "Portfolio downside analysis" },
+      { "name": "Risk Metrics", "desc": "Monitoring and evaluating exposure" },
+      { "name": "Financial Modeling", "desc": "Data-driven market decision frameworks" }
+    ]
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science & Data Analytics",
+      "institution": "Indian Institute of Technology Patna",
+      "status": "Expected 2029"
+    }
+  ],
+  "accomplishments": [
+    {
+      "title": "Built AI Time-Series Regime Detection System",
+      "detail": "Achieved 65-75% regime transition prediction accuracy"
+    },
+    {
+      "title": "Improved risk-adjusted performance",
+      "detail": "Delivered +56% gain in strategy performance metrics"
+    },
+    {
+      "title": "Processed 17+ years of historical datasets",
+      "detail": "Developed production-style, time-series-aware ML pipeline"
+    },
+    {
+      "title": "Built retail demand forecasting and inventory optimization pipeline",
+      "detail": "Implemented Airflow ETL + Prophet/XGBoost hybrid forecasting"
+    },
+    {
+      "title": "NISM Series VIII",
+      "detail": "Equity Derivatives Certification (National Institute of Securities Markets)"
+    },
+    {
+      "title": "CFA Program",
+      "detail": "Level I Candidate (Chartered Financial Analyst Institute)"
+    }
+  ],
+  "media_appearances": [],
+  "interests": ["Applied Machine Learning", "Market Microstructure", "Systematic Forecasting", "Risk Management", "Supply Chain Intelligence", "Scalable Data Systems"]
+}

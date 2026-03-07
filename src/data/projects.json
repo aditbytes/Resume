@@ -1,0 +1,26 @@
+[
+  {
+    "title": "AI Time-Series Regime Detection System",
+    "description": "Production-grade regime detection for high-dimensional time-series data using HMM + KMeans and XGBoost transition prediction.\n\nKey outcomes:\n- 65-75% transition prediction accuracy\n- 17+ years of data processed\n- +56% improvement in risk-adjusted performance\n- Streamlit deployment for live monitoring and risk heatmaps",
+    "website": null,
+    "github": null,
+    "showIframe": false,
+    "extra": []
+  },
+  {
+    "title": "Retail Demand Forecasting & Inventory Optimization",
+    "description": "End-to-end SKU-level next-week demand forecasting pipeline combining Prophet + XGBoost with rule-based reorder recommendations.\n\nHighlights:\n- Airflow ETL for retail data pipelines\n- Postgres-backed analytical workflows\n- Backtesting across multiple regions and market conditions\n- Dashboard experience using Streamlit/React",
+    "website": null,
+    "github": null,
+    "showIframe": false,
+    "extra": []
+  },
+  {
+    "title": "LeetCode Solutions Archive",
+    "description": "A structured, ongoing archive of algorithmic problem solving with focus on graph algorithms, dynamic programming, trees, and heaps.",
+    "website": null,
+    "github": "https://github.com/sinhaaditya9241",
+    "showIframe": false,
+    "extra": []
+  }
+]

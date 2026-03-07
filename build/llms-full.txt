@@ -1,0 +1,141 @@
+# llms-full.txt — Aditya (complete reference)
+
+This is the comprehensive, self-contained version of llms.txt. It contains all portfolio data currently available.
+
+Last-Updated: 2026-03-07
+Canonical: https://aditbytes.github.io/Resume/llms-full.txt
+Short version: https://aditbytes.github.io/Resume/llms.txt
+Machine-readable: https://aditbytes.github.io/Resume/profile.json
+
+---
+
+## Identity
+
+- Name: Aditya
+
+- Location: Patna, India
+- Role: Quant, Finance & Data | Computer Science & Data Analytics Student
+- Email: mailto:kraditya9241@gmail.com
+- GitHub: https://github.com/sinhaaditya9241
+- LinkedIn: https://www.linkedin.com/in/aditya-405437360
+- X/Twitter: 
+- YouTube: 
+- Portfolio: https://aditbytes.github.io/Resume/
+
+
+---
+
+## Education
+
+- Bachelor of Science in Computer Science & Data Analytics — Indian Institute of Technology Patna (Expected 2029)
+
+---
+
+## Bio
+
+Hey! I'm Aditya, a Computer Science & Data Analytics student at IIT Patna focused on machine learning and quantitative finance.
+
+I am pursuing a Bachelor of Science in Computer Science & Data Analytics at IIT Patna (Expected 2029), with coursework in Statistics, Time Series Analysis, Machine Learning, and Financial Modeling.
+
+I build end-to-end predictive systems for finance and supply chains. Run projects to explore my featured work.
+
+I maintain a practical algorithm and DSA practice workflow through my LeetCode solutions archive.
+
+Currently focused on Python, financial modeling, and algorithmic trading foundations while improving production-ready ML deployment skills.
+
+My toolkit includes Pandas, NumPy, Scikit-Learn, XGBoost, TensorFlow, Prophet, SQL, Postgres, Airflow, and Streamlit. Run skills for details.
+
+Previously worked as a Primary School Teacher at Gautam Bright School (July 2023 - March 2025), where I developed strong communication and leadership skills.
+
+I enjoy bridging coding and markets by turning noisy, large datasets into deployable decision systems.
+
+If you're working on data-driven finance or forecasting systems, feel free to connect.
+
+---
+
+## Achievements
+
+- Built AI Time-Series Regime Detection System — Achieved 65-75% regime transition prediction accuracy
+- Improved risk-adjusted performance — Delivered +56% gain in strategy performance metrics
+- Processed 17+ years of historical datasets — Developed production-style, time-series-aware ML pipeline
+- Built retail demand forecasting and inventory optimization pipeline — Implemented Airflow ETL + Prophet/XGBoost hybrid forecasting
+- NISM Series VIII — Equity Derivatives Certification (National Institute of Securities Markets)
+- CFA Program — Level I Candidate (Chartered Financial Analyst Institute)
+
+---
+
+## Press & media appearances
+
+- No press entries listed yet
+
+---
+
+## Skills
+
+### Languages
+  - Python: Core language for ML, analytics, and automation
+  - SQL: Data querying, transformation, and reporting
+  - JavaScript: Frontend and utility scripting
+  - HTML: Web structure
+  - CSS: Web styling and layout
+
+### ML & Forecasting
+  - Pandas: Data wrangling and time-series processing
+  - NumPy: Numerical computing and vectorized operations
+  - Scikit-Learn: Classical machine learning pipelines
+  - XGBoost: Gradient boosting for predictive modeling
+  - TensorFlow: Deep learning workflows
+  - Keras: Neural network API for deep learning
+  - Prophet: Forecasting with trend and seasonality
+  - HMM: Regime/state detection in sequential data
+  - KMeans: Clustering for segmentation and structure
+
+### Data Engineering
+  - Postgres: Relational data storage and analytics
+  - Apache Airflow: ETL orchestration and scheduled pipelines
+  - ETL Pipelines: Data extraction, cleaning, and loading
+  - Git: Version control and collaboration
+
+### Visualization & Apps
+  - Streamlit: Rapid analytical dashboards
+  - Plotly: Interactive data visualizations
+  - Matplotlib: Static data visualization and charting
+  - React: UI development for analytics interfaces
+
+### Finance & Risk
+  - Sharpe Ratio: Risk-adjusted performance measurement
+  - Drawdown: Portfolio downside analysis
+  - Risk Metrics: Monitoring and evaluating exposure
+  - Financial Modeling: Data-driven market decision frameworks
+
+---
+
+## All projects (3 total)
+
+- AI Time-Series Regime Detection System — Production-grade regime detection for high-dimensional time-series data using HMM + KMeans and XGBoost transition prediction.
+
+Key outcomes:
+- 65-75% transition prediction accuracy
+- 17+ years of data processed
+- +56% improvement in risk-adjusted performance
+- Streamlit deployment for live monitoring and risk heatmaps
+
+- Retail Demand Forecasting & Inventory Optimization — End-to-end SKU-level next-week demand forecasting pipeline combining Prophet + XGBoost with rule-based reorder recommendations.
+
+Highlights:
+- Airflow ETL for retail data pipelines
+- Postgres-backed analytical workflows
+- Backtesting across multiple regions and market conditions
+- Dashboard experience using Streamlit/React
+
+- LeetCode Solutions Archive — A structured, ongoing archive of algorithmic problem solving with focus on graph algorithms, dynamic programming, trees, and heaps.
+  - GitHub: https://github.com/sinhaaditya9241
+
+---
+
+## Contact
+
+- Email: kraditya9241@gmail.com
+- Portfolio: https://aditbytes.github.io/Resume/
+- LinkedIn: https://www.linkedin.com/in/aditya-405437360
+- GitHub: https://github.com/sinhaaditya9241
