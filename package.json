@@ -24,6 +24,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "npm run update-metadata && react-scripts build && npm run update-metadata",
