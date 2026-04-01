@@ -2,7 +2,7 @@
 
 This is the comprehensive, self-contained version of llms.txt. It contains all portfolio data currently available.
 
-Last-Updated: 2026-03-07
+Last-Updated: 2026-04-01
 Canonical: https://aditbytes.github.io/Resume/llms-full.txt
 Short version: https://aditbytes.github.io/Resume/llms.txt
 Machine-readable: https://aditbytes.github.io/Resume/profile.json
